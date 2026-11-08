@@ -1,0 +1,119 @@
+{
+  "default": {
+    "peakBytes": 1073741824,
+    "finishedBytes": 1073741824
+  },
+  "families": {
+    "ifixit": {
+      "peakBytes": 4294967296,
+      "finishedBytes": 1073741824
+    },
+    "wikihow": {
+      "sourceBytes": 51256446526,
+      "peakBytes": 4831838208,
+      "finishedBytes": 67108864
+    },
+    "gutenberg": {
+      "sourceBytes": 40254449517,
+      "peakBytes": 12884901888,
+      "finishedBytes": 134217728
+    },
+    "maps": {
+      "peakBytes": 1073741824,
+      "finishedBytes": 1073741824
+    }
+  },
+  "collections": [
+    {
+      "prefix": "wikihow_en_maxi_",
+      "catalogID": "00000000-0000-0000-0000-000000000001",
+      "sourceBytes": 51256446526,
+      "peakBytes": 4831838208,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-d_",
+      "catalogID": "63051bb6-8b41-807a-6b65-d5f44c08629e",
+      "sourceBytes": 40254449517,
+      "peakBytes": 9663676416,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-e_",
+      "catalogID": "c4261532-e5b7-46f2-2905-e8fdb136030a",
+      "sourceBytes": 10196817986,
+      "peakBytes": 3221225472,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-f_",
+      "catalogID": "01525ae1-a345-142e-caf0-11f9e443f1c2",
+      "sourceBytes": 9888133170,
+      "peakBytes": 2684354560,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-g_",
+      "catalogID": "40fac4bc-6243-419d-2709-4b6e59dae976",
+      "sourceBytes": 8095142801,
+      "peakBytes": 2684354560,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-m_",
+      "catalogID": "752f643c-dd14-6156-622d-421c8d7c432a",
+      "sourceBytes": 3994272104,
+      "peakBytes": 1073741824,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-n_",
+      "catalogID": "ff6b7691-c044-c3b4-72ec-a52365cc8080",
+      "sourceBytes": 22752881356,
+      "peakBytes": 1073741824,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-pr_",
+      "catalogID": "b6a29128-cbf7-ab30-afe6-ff641b25b5b9",
+      "sourceBytes": 16152121320,
+      "peakBytes": 12884901888,
+      "finishedBytes": 134217728
+    },
+    {
+      "prefix": "gutenberg_en_lcc-ps_",
+      "catalogID": "7541da9a-701e-ef12-983b-0da1f0a29729",
+      "sourceBytes": 16022294302,
+      "peakBytes": 9663676416,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-pz_",
+      "catalogID": "f922f53e-e58b-b754-bc61-8d3a1e067e09",
+      "sourceBytes": 19770263119,
+      "peakBytes": 5905580032,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-q_",
+      "catalogID": "438c7985-7b24-b470-9dfc-7b0cafa02269",
+      "sourceBytes": 17724714270,
+      "peakBytes": 3221225472,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-s_",
+      "catalogID": "4dc2d539-98f7-0b76-7256-0943f0c52e60",
+      "sourceBytes": 4532683039,
+      "peakBytes": 1073741824,
+      "finishedBytes": 67108864
+    },
+    {
+      "prefix": "gutenberg_en_lcc-t_",
+      "catalogID": "1bc843c0-c4d3-5241-90b8-f70496cff27b",
+      "sourceBytes": 13154803470,
+      "peakBytes": 2147483648,
+      "finishedBytes": 67108864
+    }
+  ]
+}

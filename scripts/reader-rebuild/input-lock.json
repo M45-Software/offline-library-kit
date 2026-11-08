@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "note": "Recorded local SHA-256 baselines for the experimental Linux source build; they are not publisher signatures or proof of complete corresponding source. Dependency and test hashes can also be checked against the pinned upstream recipes.",
+  "files": {
+    "git-sources/kiwix-build-8062f23fb42454c9e6db319abe71d2add7263de7.tar": {
+      "sha256": "c1ef2ad756094022b7a6794ec2188eaf5cbf7b7e654fda8bc2c0deacfc29b717",
+      "size": 1464320,
+      "git": "https://github.com/kiwix/kiwix-build.git",
+      "commit": "8062f23fb42454c9e6db319abe71d2add7263de7"
+    },
+    "git-sources/kiwix-tools-f76e38bdc06b86b73ba8e84a5de234a0d6c3fa3d.tar": {
+      "sha256": "7a571a05b7e1dcbcc7f936d55e883cfc92cd4531bf23d15995c40cfed339b185",
+      "size": 696320,
+      "git": "https://github.com/kiwix/kiwix-tools.git",
+      "commit": "f76e38bdc06b86b73ba8e84a5de234a0d6c3fa3d"
+    },
+    "git-sources/libkiwix-30adab733771835f25697e4f2ea18dc2eec4e92d.tar": {
+      "sha256": "7b18a94395338616d687678b4f395e5ae2984969e0654aba50df6c27cc56d5ba",
+      "size": 3471360,
+      "git": "https://github.com/kiwix/libkiwix.git",
+      "commit": "30adab733771835f25697e4f2ea18dc2eec4e92d"
+    },
+    "git-sources/libzim-0e95c45ec5ebd758784060111ea5a80a08c3f9c7.tar": {
+      "sha256": "b72a913716674b7cab9bb8b1ff1ef638ea1d9e101694fdc16115c6a0e1de48d5",
+      "size": 1310720,
+      "git": "https://github.com/openzim/libzim.git",
+      "commit": "0e95c45ec5ebd758784060111ea5a80a08c3f9c7"
+    },
+    "kiwix-archives/Mustache-4.1.tar.gz": {
+      "sha256": "acd66359feb4318b421f9574cfc5a511133a77d916d0b13c7caa3783c0bfe167",
+      "size": 98905,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/mustache-4.1.tar.gz"
+      ]
+    },
+    "kiwix-archives/curl-8.4.0.tar.xz": {
+      "sha256": "16c62a9c4af0f703d28bda6d7bbf37ba47055ad3414d70dec63e2e6336f2a82d",
+      "size": 2658376,
+      "urls": [
+        "https://curl.se/download/curl-8.4.0.tar.xz"
+      ]
+    },
+    "kiwix-archives/curl_8.4.0-2_patch.zip": {
+      "sha256": "bbb6ae75225c36ef9bb336cface729794c7c070c623a003fff40bd416042ff6e",
+      "size": 25561,
+      "urls": [
+        "https://dev.kiwix.org/libkiwix/curl_8.4.0-2_patch.zip"
+      ]
+    },
+    "kiwix-archives/docopt_0.6.3-3_patch.zip": {
+      "sha256": "1f641187f9d3f35b0a5ebd2011876ef8e9b04b69b7b163095dd7dfa16219ad01",
+      "size": 1393,
+      "urls": [
+        "https://wrapdb.mesonbuild.com/v2/docopt_0.6.3-3/get_patch"
+      ]
+    },
+    "kiwix-archives/e2fsprogs-1.47.3.tar.xz": {
+      "sha256": "857e6ef800feaa2bb4578fbc810214be5d3c88b072ea53c5384733a965737329",
+      "size": 7321540,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/e2fsprogs-1.47.3.tar.xz"
+      ]
+    },
+    "kiwix-archives/icu4c-73_2-data.zip": {
+      "sha256": "ca1ee076163b438461e484421a7679fc33a64cd0a54f9d4b401893fa1eb42701",
+      "size": 19990179,
+      "urls": [
+        "https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-data.zip"
+      ]
+    },
+    "kiwix-archives/icu4c-73_2-src.tgz": {
+      "sha256": "818a80712ed3caacd9b652305e01afc7fa167e6f2e94996da44b90c2ab604ce1",
+      "size": 26519906,
+      "urls": [
+        "https://github.com/unicode-org/icu/releases/download/release-73-2/icu4c-73_2-src.tgz"
+      ]
+    },
+    "kiwix-archives/liblzma_5.2.6-3_patch.zip": {
+      "sha256": "1c71536d364e1a3ce6bea61266576f89cc5cce4d3b9e11f3494417dafa29780b",
+      "size": 7598,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/liblzma_5.2.6-3_patch.zip"
+      ]
+    },
+    "kiwix-archives/libmicrohttpd-0.9.76.tar.gz": {
+      "sha256": "f0b1547b5a42a6c0f724e8e1c1cb5ce9c4c35fb495e7d780b9930d35011ceb4c",
+      "size": 2199858,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/libmicrohttpd-0.9.76.tar.gz"
+      ]
+    },
+    "kiwix-archives/libmicrohttpd_0.9.16-3_patch.zip": {
+      "sha256": "0954c094a0d4cfe0dd799d8df8a04face6669f7b4d51a7386a9c3e2d37b9c3b3",
+      "size": 7808,
+      "urls": [
+        "https://wrapdb.mesonbuild.com/v2/libmicrohttpd_0.9.76-3/get_patch"
+      ]
+    },
+    "kiwix-archives/pugixml-1.15.tar.gz": {
+      "sha256": "2e094287f58de02047b2ef23122904de0e02e3b4e9d6b44952d087e746b25974",
+      "size": 400790,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/pugixml-1.15.tar.gz"
+      ]
+    },
+    "kiwix-archives/v0.6.3.tar.gz": {
+      "sha256": "28af5a0c482c6d508d22b14d588a3b0bd9ff97135f99c2814a5aa3cbff1d6632",
+      "size": 27598,
+      "urls": [
+        "https://github.com/docopt/docopt.cpp/archive/v0.6.3.tar.gz",
+        "https://codeload.github.com/docopt/docopt.cpp/tar.gz/v0.6.3"
+      ]
+    },
+    "kiwix-archives/xapian-core-1.4.23.tar.xz": {
+      "sha256": "30d3518172084f310dab86d262b512718a7f9a13635aaa1a188e61dc26b2288c",
+      "size": 3024644,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/xapian-core-1.4.23.tar.xz"
+      ]
+    },
+    "kiwix-archives/xz-5.2.6.tar.gz": {
+      "sha256": "a2105abee17bcd2ebd15ced31b4f5eda6e17efd6b10f921a01cda4a44c91b3a0",
+      "size": 2069602,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/xz-5.2.6.tar.gz"
+      ]
+    },
+    "kiwix-archives/zim-testing-suite-0.9.0.tar.gz": {
+      "sha256": "1192a4552c5a455c5219a732657d3dbfb5fd6f5ddab206f9cbb913b1ba09a99c",
+      "size": 25248332,
+      "urls": [
+        "https://github.com/openzim/zim-testing-suite/releases/download/0.9.0/zim-testing-suite-0.9.0.tar.gz"
+      ]
+    },
+    "kiwix-archives/zlib-1.3.1.tar.gz": {
+      "sha256": "9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23",
+      "size": 1512791,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/zlib-1.3.1.tar.gz"
+      ]
+    },
+    "kiwix-archives/zlib_1.3.1-1_patch.zip": {
+      "sha256": "e79b98eb24a75392009cec6f99ca5cdca9881ff20bfa174e8b8926d5c7a47095",
+      "size": 2403,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/zlib_1.3.1-1_patch.zip"
+      ]
+    },
+    "kiwix-archives/zstd-1.5.7.tar.gz": {
+      "sha256": "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3",
+      "size": 2434947,
+      "urls": [
+        "https://dev.kiwix.org/kiwix-build/zstd-1.5.7.tar.gz"
+      ]
+    },
+    "test-subprojects/libkiwix_release/gtest-1.8.1-1-wrap.zip": {
+      "sha256": "f79f5fd46e09507b3f2e09a51ea6eb20020effe543335f5aee59f30cc8d15805",
+      "size": 2084,
+      "urls": [
+        "https://wrapdb.mesonbuild.com/v1/projects/gtest/1.8.1/1/get_zip"
+      ]
+    },
+    "test-subprojects/libkiwix_release/gtest-1.8.1.zip": {
+      "sha256": "927827c183d01734cc5cfef85e0ff3f5a92ffe6188e0d18e909c5efebf28a0c7",
+      "size": 1294753,
+      "urls": [
+        "https://github.com/google/googletest/archive/release-1.8.1.zip",
+        "https://codeload.github.com/google/googletest/zip/release-1.8.1"
+      ]
+    },
+    "test-subprojects/libzim_release/gtest-1.14.0.tar.gz": {
+      "sha256": "8ad598c73ad796e0d8280b082cebd82a630d73e73cd3c70057938a6501bba5d7",
+      "size": 867764,
+      "urls": [
+        "https://github.com/google/googletest/archive/refs/tags/v1.14.0.tar.gz",
+        "https://github.com/mesonbuild/wrapdb/releases/download/gtest_1.14.0-1/gtest-1.14.0.tar.gz",
+        "https://codeload.github.com/google/googletest/tar.gz/refs/tags/v1.14.0"
+      ]
+    },
+    "test-subprojects/libzim_release/gtest_1.14.0-1_patch.zip": {
+      "sha256": "2e693c7d3f9370a7aa6dac802bada0874d3198ad4cfdf75647b818f691182b50",
+      "size": 2440,
+      "urls": [
+        "https://wrapdb.mesonbuild.com/v2/gtest_1.14.0-1/get_patch"
+      ]
+    }
+  }
+}

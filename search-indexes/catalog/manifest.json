@@ -1,0 +1,425 @@
+{
+  "Archives": [
+    {
+      "Collection": "bicycles.stackexchange.com_en_all_2026-10",
+      "UUID": "2c464b36-1ea7-2646-ba6a-3b7504ec4a63",
+      "Bytes": 499254876,
+      "ChecksumMD5": "edc45ec254615630ed77085dbaa278ce"
+    },
+    {
+      "Collection": "biology.stackexchange.com_en_all_2026-10",
+      "UUID": "0b4cd5bc-03d9-862b-88d2-ea9a8bd16ddf",
+      "Bytes": 425073886,
+      "ChecksumMD5": "fcc2288efb7b2cf89aad25b04ab2d692"
+    },
+    {
+      "Collection": "cooking.stackexchange.com_en_all_2026-10",
+      "UUID": "824a49b9-e96e-a649-26e3-6d5bd97872cb",
+      "Bytes": 238098128,
+      "ChecksumMD5": "66913788dbe71a5db315cd9b801c7c6b"
+    },
+    {
+      "Collection": "diy.stackexchange.com_en_all_2026-10",
+      "UUID": "3ce0e841-f500-513e-2a64-c3650e7e89a1",
+      "Bytes": 2086024326,
+      "ChecksumMD5": "c644dd50cb62be2087c58b5914641670"
+    },
+    {
+      "Collection": "electronics.stackexchange.com_en_all_2026-10",
+      "UUID": "fe8086f4-df2e-93e9-5a46-acc5e7fa6fcc",
+      "Bytes": 4261397539,
+      "ChecksumMD5": "f9cca04866f33d763d9c214bab73268e"
+    },
+    {
+      "Collection": "engineering.stackexchange.com_en_all_2026-10",
+      "UUID": "9dc7bf86-7099-e29f-a0d9-d0f74bab8f1e",
+      "Bytes": 258556632,
+      "ChecksumMD5": "6d33cffa2cbc72eff61062463c6bb2eb"
+    },
+    {
+      "Collection": "gardening.stackexchange.com_en_all_2026-10",
+      "UUID": "e6c0cf4d-c610-0ef0-bb79-ebae48c61c63",
+      "Bytes": 933097375,
+      "ChecksumMD5": "c61986e7fd1fd1455ac1ae0ca84b50a6"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-d_2025-12",
+      "UUID": "63051bb6-8b41-807a-6b65-d5f44c08629e",
+      "Bytes": 40254449517,
+      "ChecksumMD5": "eaa1be5a93c6b0aa8e8e31ff103303d7"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-e_2026-03",
+      "UUID": "c4261532-e5b7-46f2-2905-e8fdb136030a",
+      "Bytes": 10196817986,
+      "ChecksumMD5": "ff8df439cc2308020d5330871f4a6082"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-f_2026-03",
+      "UUID": "01525ae1-a345-142e-caf0-11f9e443f1c2",
+      "Bytes": 9888133170,
+      "ChecksumMD5": "0f53141af82a786605127f7a7a7c5b0d"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-g_2026-03",
+      "UUID": "40fac4bc-6243-419d-2709-4b6e59dae976",
+      "Bytes": 8095142801,
+      "ChecksumMD5": "16e6c2bbe1503823ec4a0a3d68446100"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-m_2026-03",
+      "UUID": "752f643c-dd14-6156-622d-421c8d7c432a",
+      "Bytes": 3994272104,
+      "ChecksumMD5": "5368f5ff6a0b56d7b56a3f0383210bdf"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-n_2026-03",
+      "UUID": "ff6b7691-c044-c3b4-72ec-a52365cc8080",
+      "Bytes": 22752881356,
+      "ChecksumMD5": "dbdbf556c1507fd917ea4b9c8c10d3e8"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-pr_2026-03",
+      "UUID": "b6a29128-cbf7-ab30-afe6-ff641b25b5b9",
+      "Bytes": 16152121320,
+      "ChecksumMD5": "e7e0117c52b2af5086eb13abe5356476"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-ps_2026-03",
+      "UUID": "7541da9a-701e-ef12-983b-0da1f0a29729",
+      "Bytes": 16022294302,
+      "ChecksumMD5": "a2a3458b421d72e34d87cf899cd1f928"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-pz_2026-03",
+      "UUID": "f922f53e-e58b-b754-bc61-8d3a1e067e09",
+      "Bytes": 19770263119,
+      "ChecksumMD5": "d77f1d5b6f55c808c42e63e40c2d57da"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-q_2026-03",
+      "UUID": "438c7985-7b24-b470-9dfc-7b0cafa02269",
+      "Bytes": 17724714270,
+      "ChecksumMD5": "e1e5ec8ff8ea11596752d977ef961147"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-s_2026-03",
+      "UUID": "4dc2d539-98f7-0b76-7256-0943f0c52e60",
+      "Bytes": 4532683039,
+      "ChecksumMD5": "f01088b56716f4bf9f4d4ca7f4eabaaa"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-t_2026-03",
+      "UUID": "1bc843c0-c4d3-5241-90b8-f70496cff27b",
+      "Bytes": 13154803470,
+      "ChecksumMD5": "e0f9054ff42af9682d4d79c87f58a515"
+    },
+    {
+      "Collection": "ifixit-mirror",
+      "UUID": "97b9c3e1-51db-324d-9608-0da874fc7ab0",
+      "Bytes": 3593225001,
+      "ChecksumMD5": "a5ab4614a2648fd14823891c59e19a93"
+    },
+    {
+      "Collection": "maps_en_united-states-of-america_2026-06",
+      "UUID": "b6707563-af93-c0e8-fe55-853fc367b4b2",
+      "Bytes": 16601605855,
+      "ChecksumMD5": "452672de1825c58aed46b8df9977d1ff"
+    },
+    {
+      "Collection": "mechanics.stackexchange.com_en_all_2026-10",
+      "UUID": "e45b4b88-7c3d-0111-e8fb-0c956bb17322",
+      "Bytes": 341672133,
+      "ChecksumMD5": "93a4be46f2d4c2d51148a336ee0ed3e4"
+    },
+    {
+      "Collection": "medical-mirror",
+      "UUID": "f0902c7c-81ad-0490-6f91-fecc14810992",
+      "Bytes": 1864210320,
+      "ChecksumMD5": "cb203f1d10eba348d65e9f4c237fe34a"
+    },
+    {
+      "Collection": "medicalsciences.stackexchange.com_en_all_2026-10",
+      "UUID": "2f760ea4-f61e-962c-0e85-f62f6aa46552",
+      "Bytes": 60659941,
+      "ChecksumMD5": "f8b9d1beda94930580d7651390e00d7c"
+    },
+    {
+      "Collection": "outdoors.stackexchange.com_en_all_2026-10",
+      "UUID": "86b8cb92-0a13-e696-1605-276b52d4db98",
+      "Bytes": 141820374,
+      "ChecksumMD5": "1649b9c4dd4918765e8d0458450af3b4"
+    },
+    {
+      "Collection": "sustainability-mirror-test",
+      "UUID": "39c4b70b-829a-a0ab-df3c-30a590cbdea4",
+      "Bytes": 27687333,
+      "ChecksumMD5": "d532e4dd442d5d259395aa68c1a208e4"
+    },
+    {
+      "Collection": "wikibooks_en_all_maxi_2026-10",
+      "UUID": "4448bebc-ab7f-39c6-dd4d-736fe694a55f",
+      "Bytes": 4739739728,
+      "ChecksumMD5": "7a5fc8b2e25e768473a889a22029e9b6"
+    },
+    {
+      "Collection": "wikihow_en_maxi_2023-03",
+      "UUID": "4f1c17e6-cd27-3060-ac5b-31448348c6dc",
+      "Bytes": 51256446526,
+      "ChecksumMD5": "e4f8cff9b3980e6679f2b4178b79e2e1"
+    },
+    {
+      "Collection": "wikipedia-en-mirror",
+      "UUID": "50e94998-c1ec-b5e7-ec34-499f1d907c30",
+      "Bytes": 127418087648,
+      "ChecksumMD5": "455b2449cd53e8facfcb37c1d73920e5"
+    },
+    {
+      "Collection": "wikisource_en_all_maxi_2026-09",
+      "UUID": "e291b2f1-52cd-92a1-4cdc-c955aed4a954",
+      "Bytes": 8615937017,
+      "ChecksumMD5": "3b2283a34bcf1b69151bdeddeb199b4a"
+    },
+    {
+      "Collection": "wikivoyage_en_all_maxi_2026-09",
+      "UUID": "2d7d9c72-e77d-3ce3-b8f6-140790d36f7a",
+      "Bytes": 1071168673,
+      "ChecksumMD5": "7b66dc8510f9c58542d695d2c91d2ac9"
+    },
+    {
+      "Collection": "wiktionary_en_all_nopic_2026-08",
+      "UUID": "f2c2fd4e-dba3-2b22-7318-3190feb051bc",
+      "Bytes": 9156425592,
+      "ChecksumMD5": "949fd05f0dbc17cddf6e530065c9765b"
+    },
+    {
+      "Collection": "woodworking.stackexchange.com_en_all_2026-10",
+      "UUID": "c3a5295f-07b9-64af-fce6-e9eeb93bdc75",
+      "Bytes": 106657287,
+      "ChecksumMD5": "f04837d8632ddeb71ef38a40bb45b159"
+    }
+  ],
+  "Parts": [
+    {
+      "Name": "index.part-0001.bin",
+      "Bytes": 67108864,
+      "SHA256": "6ea3b980222aa2a2f517abe48448e19d4f789b0663b863a5d361f4ad31c8e980"
+    },
+    {
+      "Name": "index.part-0002.bin",
+      "Bytes": 67108864,
+      "SHA256": "687be8cd3270da528794f2c7bb497aca2d9f290b87f54b33bd11877ca97f899b"
+    },
+    {
+      "Name": "index.part-0003.bin",
+      "Bytes": 67108864,
+      "SHA256": "1f6a16dc08cd5c3d45cf47ab0d93c7516240806961c818a856cee2e0f3521b34"
+    },
+    {
+      "Name": "index.part-0004.bin",
+      "Bytes": 67108864,
+      "SHA256": "1c5d991288aff6183f3f8b3734f219e2139823cd7b2e57c1c408e2cf70b6582e"
+    },
+    {
+      "Name": "index.part-0005.bin",
+      "Bytes": 67108864,
+      "SHA256": "f499d90fc42d00534819616f827c7ad41fe087b1d4633dbcd2aea8261bc051f9"
+    },
+    {
+      "Name": "index.part-0006.bin",
+      "Bytes": 62113751,
+      "SHA256": "00ca053dcf005b2042f5fe68750a3d1a407b64420f1dc30463c3f783e39aea7f"
+    }
+  ],
+  "SourceType": "catalog-queues",
+  "IndexSHA256": "959e213010fc4807df3fcc0965f2cedabeca8cc874e748a0d750de9f31bb8f9a",
+  "Ranges": {
+    "bicycles.stackexchange.com_en_all_2026-10": {
+      "First": 0,
+      "Count": 46407
+    },
+    "biology.stackexchange.com_en_all_2026-10": {
+      "First": 46407,
+      "Count": 53906
+    },
+    "cooking.stackexchange.com_en_all_2026-10": {
+      "First": 100313,
+      "Count": 63803
+    },
+    "diy.stackexchange.com_en_all_2026-10": {
+      "First": 164116,
+      "Count": 178384
+    },
+    "electronics.stackexchange.com_en_all_2026-10": {
+      "First": 342500,
+      "Count": 354083
+    },
+    "engineering.stackexchange.com_en_all_2026-10": {
+      "First": 696583,
+      "Count": 34208
+    },
+    "gardening.stackexchange.com_en_all_2026-10": {
+      "First": 730791,
+      "Count": 35431
+    },
+    "gutenberg_en_lcc-d_2025-12": {
+      "First": 766222,
+      "Count": 5869
+    },
+    "gutenberg_en_lcc-e_2026-03": {
+      "First": 772091,
+      "Count": 2249
+    },
+    "gutenberg_en_lcc-f_2026-03": {
+      "First": 774340,
+      "Count": 1660
+    },
+    "gutenberg_en_lcc-g_2026-03": {
+      "First": 776000,
+      "Count": 1163
+    },
+    "gutenberg_en_lcc-m_2026-03": {
+      "First": 777163,
+      "Count": 419
+    },
+    "gutenberg_en_lcc-n_2026-03": {
+      "First": 777582,
+      "Count": 1008
+    },
+    "gutenberg_en_lcc-pr_2026-03": {
+      "First": 778590,
+      "Count": 9681
+    },
+    "gutenberg_en_lcc-ps_2026-03": {
+      "First": 788271,
+      "Count": 11301
+    },
+    "gutenberg_en_lcc-pz_2026-03": {
+      "First": 799572,
+      "Count": 6838
+    },
+    "gutenberg_en_lcc-q_2026-03": {
+      "First": 806410,
+      "Count": 2272
+    },
+    "gutenberg_en_lcc-s_2026-03": {
+      "First": 808682,
+      "Count": 725
+    },
+    "gutenberg_en_lcc-t_2026-03": {
+      "First": 809407,
+      "Count": 1474
+    },
+    "ifixit-mirror": {
+      "First": 810881,
+      "Count": 253845
+    },
+    "maps_en_united-states-of-america_2026-06": {
+      "First": 1064726,
+      "Count": 46303
+    },
+    "mechanics.stackexchange.com_en_all_2026-10": {
+      "First": 1111029,
+      "Count": 59890
+    },
+    "medical-mirror": {
+      "First": 1170919,
+      "Count": 104217
+    },
+    "medicalsciences.stackexchange.com_en_all_2026-10": {
+      "First": 1275136,
+      "Count": 16350
+    },
+    "outdoors.stackexchange.com_en_all_2026-10": {
+      "First": 1291486,
+      "Count": 14069
+    },
+    "sustainability-mirror-test": {
+      "First": 1305555,
+      "Count": 5092
+    },
+    "wikibooks_en_all_maxi_2026-10": {
+      "First": 1310647,
+      "Count": 110232
+    },
+    "wikihow_en_maxi_2023-03": {
+      "First": 1420879,
+      "Count": 122463
+    },
+    "wikipedia-en-mirror": {
+      "First": 1543342,
+      "Count": 10923207
+    },
+    "wikisource_en_all_maxi_2026-09": {
+      "First": 12466549,
+      "Count": 706865
+    },
+    "wikivoyage_en_all_maxi_2026-09": {
+      "First": 13173414,
+      "Count": 39180
+    },
+    "wiktionary_en_all_nopic_2026-08": {
+      "First": 13212594,
+      "Count": 9087944
+    },
+    "woodworking.stackexchange.com_en_all_2026-10": {
+      "First": 22300538,
+      "Count": 9276
+    }
+  },
+  "Version": 4,
+  "Documents": 22309814,
+  "Shards": [
+    "index.bin"
+  ],
+  "Codec": "adaptive",
+  "BlockBytes": 32768,
+  "Collections": {
+    "bicycles.stackexchange.com_en_all_2026-10": "Bicycles Q\u0026A",
+    "biology.stackexchange.com_en_all_2026-10": "Biology Q\u0026A",
+    "cooking.stackexchange.com_en_all_2026-10": "Cooking Q\u0026A (Seasoned Advice)",
+    "diy.stackexchange.com_en_all_2026-10": "Home Improvement Q\u0026A",
+    "electronics.stackexchange.com_en_all_2026-10": "Electronics Q\u0026A",
+    "engineering.stackexchange.com_en_all_2026-10": "Engineering Q\u0026A",
+    "gardening.stackexchange.com_en_all_2026-10": "Gardening \u0026 Landscaping Q\u0026A",
+    "gutenberg_en_lcc-d_2025-12": "Gutenberg: World history",
+    "gutenberg_en_lcc-e_2026-03": "Gutenberg: U.S. history",
+    "gutenberg_en_lcc-f_2026-03": "Gutenberg: Americas and regional history",
+    "gutenberg_en_lcc-g_2026-03": "Gutenberg: Geography and travel",
+    "gutenberg_en_lcc-m_2026-03": "Gutenberg: Music",
+    "gutenberg_en_lcc-n_2026-03": "Gutenberg: Arts",
+    "gutenberg_en_lcc-pr_2026-03": "Gutenberg: English literature",
+    "gutenberg_en_lcc-ps_2026-03": "Gutenberg: American literature",
+    "gutenberg_en_lcc-pz_2026-03": "Gutenberg: Children's books",
+    "gutenberg_en_lcc-q_2026-03": "Gutenberg: Science",
+    "gutenberg_en_lcc-s_2026-03": "Gutenberg: Agriculture",
+    "gutenberg_en_lcc-t_2026-03": "Gutenberg: Technology",
+    "ifixit-mirror": "iFixit in English — local link repairs",
+    "maps_en_united-states-of-america_2026-06": "United States of America",
+    "mechanics.stackexchange.com_en_all_2026-10": "Motor Vehicle Mechanics",
+    "medical-mirror": "WikiMed Medical Encyclopedia",
+    "medicalsciences.stackexchange.com_en_all_2026-10": "Medical Sciences Q\u0026A",
+    "outdoors.stackexchange.com_en_all_2026-10": "The Great Outdoors Q\u0026A",
+    "sustainability-mirror-test": "Sustainable Living Q\u0026A",
+    "wikibooks_en_all_maxi_2026-10": "Wikibooks",
+    "wikihow_en_maxi_2023-03": "wikiHow: How-to instructions you can trust.",
+    "wikipedia-en-mirror": "Wikipedia",
+    "wikisource_en_all_maxi_2026-09": "Wikisource",
+    "wikivoyage_en_all_maxi_2026-09": "Wikivoyage",
+    "wiktionary_en_all_nopic_2026-08": "Wiktionary",
+    "woodworking.stackexchange.com_en_all_2026-10": "Woodworking Q\u0026A"
+  },
+  "BodyWords": -1,
+  "Stats": {
+    "InputPassages": 22309814,
+    "Pages": 22309814,
+    "Terms": 9716882,
+    "BodyWords": -1,
+    "DictionaryBytes": 66753196,
+    "PostingBytes": 50739382,
+    "PageBytes": 278911706,
+    "IndexBytes": 397658071,
+    "BuildSeconds": 211.289148911
+  },
+  "Semantics": "AND across indexed fields on a page; no phrase or passage-proximity guarantee; only supplied source records are covered"
+}

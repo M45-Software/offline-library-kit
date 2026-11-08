@@ -1,0 +1,15 @@
+{
+  "name": "offline-library-shell",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portable desktop window for Offline Library",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/*.test.cjs"
+  },
+  "devDependencies": {
+    "electron": "45.2.3",
+    "playwright-core": "1.62.1"
+  }
+}

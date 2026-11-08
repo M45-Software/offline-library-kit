@@ -1,0 +1,14 @@
+# Keep packaged desktop source and embedded UI consistent across build hosts.
+/desktop/**/*.go text eol=lf
+/desktop/**/*.html text eol=lf
+/desktop/**/*.cjs text eol=lf
+/desktop/**/*.mjs text eol=lf
+/desktop/**/*.json text eol=lf
+/desktop/go.mod text eol=lf
+/desktop/go.sum text eol=lf
+/desktop/**/*.md text eol=lf
+/desktop/**/*.txt text eol=lf
+/LICENSE text eol=lf
+
+# Prebuilt search data uses ordinary Git parts; do not route through Git LFS.
+/search-indexes/**/*.bin -text -diff -filter

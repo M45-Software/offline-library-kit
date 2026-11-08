@@ -1,0 +1,4 @@
+'use strict';
+const test = require('node:test');const assert = require('node:assert/strict');const {isLocal,parseCoreURL}=require('../policy.cjs');
+test('only allows loopback HTTP and blank windows',()=>{for(const u of ['http://127.0.0.1:1234/','about:blank'])assert.equal(isLocal(u),true);for(const u of ['https://127.0.0.1:1/','http://127.0.0.1.evil.test/','http://user@127.0.0.1/','file:///tmp/x','https://example.com/'])assert.equal(isLocal(u),false)});
+test('accepts only a tokenized local control address',()=>{const address='http://127.0.0.1:1234/#'+'a'.repeat(64);assert.equal(parseCoreURL('Offline Library control panel: '+address),address);for(const s of ['bad','Offline Library control panel: http://example.com/#'+'a'.repeat(64),'Offline Library control panel: http://127.0.0.1:1/#short'])assert.throws(()=>parseCoreURL(s))});

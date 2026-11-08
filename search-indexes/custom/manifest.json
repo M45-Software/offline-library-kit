@@ -1,0 +1,221 @@
+{
+  "Archives": [
+    {
+      "Collection": "gutenberg_en_lcc-d_2025-12",
+      "UUID": "63051bb6-8b41-807a-6b65-d5f44c08629e",
+      "Bytes": 40254449517,
+      "ChecksumMD5": "eaa1be5a93c6b0aa8e8e31ff103303d7"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-e_2026-03",
+      "UUID": "c4261532-e5b7-46f2-2905-e8fdb136030a",
+      "Bytes": 10196817986,
+      "ChecksumMD5": "ff8df439cc2308020d5330871f4a6082"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-f_2026-03",
+      "UUID": "01525ae1-a345-142e-caf0-11f9e443f1c2",
+      "Bytes": 9888133170,
+      "ChecksumMD5": "0f53141af82a786605127f7a7a7c5b0d"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-g_2026-03",
+      "UUID": "40fac4bc-6243-419d-2709-4b6e59dae976",
+      "Bytes": 8095142801,
+      "ChecksumMD5": "16e6c2bbe1503823ec4a0a3d68446100"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-m_2026-03",
+      "UUID": "752f643c-dd14-6156-622d-421c8d7c432a",
+      "Bytes": 3994272104,
+      "ChecksumMD5": "5368f5ff6a0b56d7b56a3f0383210bdf"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-n_2026-03",
+      "UUID": "ff6b7691-c044-c3b4-72ec-a52365cc8080",
+      "Bytes": 22752881356,
+      "ChecksumMD5": "dbdbf556c1507fd917ea4b9c8c10d3e8"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-pr_2026-03",
+      "UUID": "b6a29128-cbf7-ab30-afe6-ff641b25b5b9",
+      "Bytes": 16152121320,
+      "ChecksumMD5": "e7e0117c52b2af5086eb13abe5356476"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-ps_2026-03",
+      "UUID": "7541da9a-701e-ef12-983b-0da1f0a29729",
+      "Bytes": 16022294302,
+      "ChecksumMD5": "a2a3458b421d72e34d87cf899cd1f928"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-pz_2026-03",
+      "UUID": "f922f53e-e58b-b754-bc61-8d3a1e067e09",
+      "Bytes": 19770263119,
+      "ChecksumMD5": "d77f1d5b6f55c808c42e63e40c2d57da"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-q_2026-03",
+      "UUID": "438c7985-7b24-b470-9dfc-7b0cafa02269",
+      "Bytes": 17724714270,
+      "ChecksumMD5": "e1e5ec8ff8ea11596752d977ef961147"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-s_2026-03",
+      "UUID": "4dc2d539-98f7-0b76-7256-0943f0c52e60",
+      "Bytes": 4532683039,
+      "ChecksumMD5": "f01088b56716f4bf9f4d4ca7f4eabaaa"
+    },
+    {
+      "Collection": "gutenberg_en_lcc-t_2026-03",
+      "UUID": "1bc843c0-c4d3-5241-90b8-f70496cff27b",
+      "Bytes": 13154803470,
+      "ChecksumMD5": "e0f9054ff42af9682d4d79c87f58a515"
+    },
+    {
+      "Collection": "ifixit-mirror",
+      "UUID": "97b9c3e1-51db-324d-9608-0da874fc7ab0",
+      "Bytes": 3593225001,
+      "ChecksumMD5": "a5ab4614a2648fd14823891c59e19a93"
+    },
+    {
+      "Collection": "maps_en_united-states-of-america_2026-06",
+      "UUID": "b6707563-af93-c0e8-fe55-853fc367b4b2",
+      "Bytes": 16601605855,
+      "ChecksumMD5": "452672de1825c58aed46b8df9977d1ff"
+    },
+    {
+      "Collection": "wikihow_en_maxi_2023-03",
+      "UUID": "4f1c17e6-cd27-3060-ac5b-31448348c6dc",
+      "Bytes": 51256446526,
+      "ChecksumMD5": "e4f8cff9b3980e6679f2b4178b79e2e1"
+    }
+  ],
+  "Parts": [
+    {
+      "Name": "index.part-0001.bin",
+      "Bytes": 67108864,
+      "SHA256": "df6fec1360da7296078dab61fecdf319fd897b6f11c9affbb5666a58d8f0f7c5"
+    },
+    {
+      "Name": "index.part-0002.bin",
+      "Bytes": 67108864,
+      "SHA256": "e62d200433f6a81f48f02a6085471a188ab794f3ff24d9d53ff38a4e293b5166"
+    },
+    {
+      "Name": "index.part-0003.bin",
+      "Bytes": 67108864,
+      "SHA256": "974de6353c1229e723f68ef0eb23187187a912ba4ff876e498bac56055bd762c"
+    },
+    {
+      "Name": "index.part-0004.bin",
+      "Bytes": 67108864,
+      "SHA256": "0e4b703a9ad86affc3f2f9ff15af3a35a423b541f6ec7da409dfb1d32c704d56"
+    },
+    {
+      "Name": "index.part-0005.bin",
+      "Bytes": 16828623,
+      "SHA256": "5a81a36f0dad54401b62481c7d95b8a14c5bbf58f73b3ff927e9cab6c012377d"
+    }
+  ],
+  "IndexSHA256": "c72751fe1c1da3dc800467111e0b70cedb1190950892957d95ff8775d35db70a",
+  "Ranges": {
+    "gutenberg_en_lcc-d_2025-12": {
+      "First": 0,
+      "Count": 5866
+    },
+    "gutenberg_en_lcc-e_2026-03": {
+      "First": 5866,
+      "Count": 2249
+    },
+    "gutenberg_en_lcc-f_2026-03": {
+      "First": 8115,
+      "Count": 1660
+    },
+    "gutenberg_en_lcc-g_2026-03": {
+      "First": 9775,
+      "Count": 1154
+    },
+    "gutenberg_en_lcc-m_2026-03": {
+      "First": 10929,
+      "Count": 419
+    },
+    "gutenberg_en_lcc-n_2026-03": {
+      "First": 11348,
+      "Count": 1008
+    },
+    "gutenberg_en_lcc-pr_2026-03": {
+      "First": 12356,
+      "Count": 9677
+    },
+    "gutenberg_en_lcc-ps_2026-03": {
+      "First": 22033,
+      "Count": 11298
+    },
+    "gutenberg_en_lcc-pz_2026-03": {
+      "First": 33331,
+      "Count": 6838
+    },
+    "gutenberg_en_lcc-q_2026-03": {
+      "First": 40169,
+      "Count": 2272
+    },
+    "gutenberg_en_lcc-s_2026-03": {
+      "First": 42441,
+      "Count": 725
+    },
+    "gutenberg_en_lcc-t_2026-03": {
+      "First": 43166,
+      "Count": 1472
+    },
+    "ifixit-mirror": {
+      "First": 44638,
+      "Count": 253845
+    },
+    "maps_en_united-states-of-america_2026-06": {
+      "First": 298483,
+      "Count": 46302
+    },
+    "wikihow_en_maxi_2023-03": {
+      "First": 344785,
+      "Count": 122462
+    }
+  },
+  "Version": 4,
+  "Documents": 467247,
+  "Shards": [
+    "index.bin"
+  ],
+  "Codec": "adaptive",
+  "BlockBytes": 32768,
+  "Collections": {
+    "gutenberg_en_lcc-d_2025-12": "Gutenberg: World history",
+    "gutenberg_en_lcc-e_2026-03": "Gutenberg: U.S. history",
+    "gutenberg_en_lcc-f_2026-03": "Gutenberg: Americas and regional history",
+    "gutenberg_en_lcc-g_2026-03": "Gutenberg: Geography and travel",
+    "gutenberg_en_lcc-m_2026-03": "Gutenberg: Music",
+    "gutenberg_en_lcc-n_2026-03": "Gutenberg: Arts",
+    "gutenberg_en_lcc-pr_2026-03": "Gutenberg: English literature",
+    "gutenberg_en_lcc-ps_2026-03": "Gutenberg: American literature",
+    "gutenberg_en_lcc-pz_2026-03": "Gutenberg: Children's books",
+    "gutenberg_en_lcc-q_2026-03": "Gutenberg: Science",
+    "gutenberg_en_lcc-s_2026-03": "Gutenberg: Agriculture",
+    "gutenberg_en_lcc-t_2026-03": "Gutenberg: Technology",
+    "ifixit-mirror": "iFixit in English — local link repairs",
+    "maps_en_united-states-of-america_2026-06": "United States of America",
+    "wikihow_en_maxi_2023-03": "wikiHow: How-to instructions you can trust."
+  },
+  "BodyWords": 0,
+  "Stats": {
+    "InputPassages": 17850783,
+    "Pages": 467247,
+    "Terms": 4269178,
+    "BodyWords": 0,
+    "DictionaryBytes": 44608637,
+    "PostingBytes": 230015369,
+    "PageBytes": 10551134,
+    "IndexBytes": 285264079,
+    "BuildSeconds": 1265.923763389
+  },
+  "Semantics": "AND across indexed fields on a page; no phrase or passage-proximity guarantee; only supplied source records are covered"
+}

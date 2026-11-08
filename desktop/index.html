@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offline Library</title><style>
+[hidden]{display:none!important}.space-details{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;font-size:.85rem}.space-details dt,.space-details dd{margin:0}.space-details dd{text-align:right}:root{font:16px system-ui;color:#173126;background:#eef4ef}body{max-width:800px;margin:0 auto;padding:34px 22px}h1{font-size:2.2rem;margin:.1em 0}h2{font-size:1.15rem;margin:0 0 .7rem}h3{font-size:1rem;margin:0 0 5px}p{line-height:1.5}header p{color:#50695b}.steps{display:flex;gap:6px;flex-wrap:wrap;margin:26px 0 18px}.steps button{background:transparent;color:#50695b;margin:0;padding:9px 12px;font-size:.88rem}.steps button span{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#dce9df;margin-right:5px}.steps button[aria-current="step"]{color:#134a30;background:#e0eee4}.steps button[aria-current="step"] span{background:#216343;color:white}.step[hidden]{display:none}.eyebrow{font-size:.75rem;font-weight:750;letter-spacing:.09em;color:#34714d;margin:0 0 10px}.destination-options{border:0;padding:0;margin:22px 0}.destination-options legend{font-weight:700;margin-bottom:8px}.destination-choice{display:flex;gap:12px;align-items:flex-start;border:1px solid #d5e3d8;border-radius:10px;padding:15px;margin:8px 0;cursor:pointer}.destination-choice:has(input:checked){border-color:#216343;background:#f0f8f1}.destination-choice input{width:auto;margin:4px 0 0}.destination-choice small{display:block;font-weight:400;color:#52695b;margin-top:5px;line-height:1.4}.location-box{background:#f4f8f5;border:1px solid #dae8dd;border-radius:10px;padding:16px}.location-box code{display:block;margin-top:8px}.step-actions{display:flex;justify-content:flex-start;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px;border-top:1px solid #e2ebe4;padding-top:14px}.step-actions>span:empty{display:none}.queue-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.queue-actions button{margin:0}.reading-search{margin-top:18px}.card{background:white;border:1px solid #d5e3d8;border-radius:16px;padding:22px;box-shadow:0 5px 18px #1731260a}label{display:block;font-size:.86rem;font-weight:650;margin-top:13px}input,select{box-sizing:border-box;width:100%;padding:10px;margin-top:5px;border:1px solid #a7b9ac;border-radius:7px;font:inherit}button{border:0;border-radius:8px;background:#216343;color:white;padding:10px 15px;font:inherit;font-weight:650;cursor:pointer;margin:8px 5px 0 0}button.secondary{background:#e4eee7;color:#173126}button:disabled{opacity:.5;cursor:default}.muted{color:#52695b;font-size:.87rem}.status{min-height:1.5em;color:#275b3c}.status:empty{display:none}.status.is-error,#queue-error{color:#a12b26}#curated-capacity{color:#82530e}progress{width:100%;height:12px}code{overflow-wrap:anywhere}details{margin-top:14px}.collection-group{margin:22px 0}.collection-group h3{border-bottom:1px solid #e2ebe4;padding-bottom:8px}.collection-choice{display:flex;align-items:flex-start;gap:10px;font-weight:400;margin:8px 0}.collection-choice input{width:auto;margin:3px 0 0}.collection-choice span{flex:1}footer{margin-top:22px;color:#52695b;font-size:.85rem}.catalog{margin-top:18px}.result{border-top:1px solid #e2ebe4;padding:13px 0}.result p{margin:4px 0}.results-controls{display:flex;justify-content:space-between}.search-row{display:grid;grid-template-columns:1fr 130px;gap:10px}@media(max-width:450px){.search-row{grid-template-columns:1fr}}
+.collection-group .collection-choice,.queue-row{display:flex;align-items:flex-start;gap:12px;margin:0;padding:12px;border-radius:8px}.collection-group .collection-choice:nth-of-type(even),.queue-row:nth-child(even){background:#f0f5f1}.collection-group .collection-choice input{accent-color:#216343;flex:none;margin:5px 0 0}.collection-group .collection-choice span{flex:initial}.item-icon{display:grid;place-items:center;flex:none;width:34px;height:34px;color:#216343;background:#e1eee4;border-radius:9px}.item-icon svg{width:19px;height:19px}.item-body{flex:1;min-width:0}.item-line{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.item-title{font-weight:650;overflow-wrap:anywhere}.item-size{white-space:nowrap;color:#52695b;font-size:.82rem}.item-share{font-size:.78rem;color:#52695b;margin-top:4px}.size-track{height:5px;background:#dbe7de;border-radius:5px;margin-top:7px;overflow:hidden}.size-fill{display:block;height:100%;background:#458861;border-radius:5px}.queue-row .remove-item{flex:none;margin:0;padding:7px 10px}.queue-current{font-size:.75rem;font-weight:700;color:#216343}.collection-choice:focus-within,.queue-row:focus-within{outline:2px solid #4d8f69;outline-offset:1px}@media(max-width:500px){.item-line{display:block}.item-size{display:block;margin-top:3px}.queue-row .remove-item{padding:6px;font-size:.8rem}}#library-search .search-row{grid-template-columns:minmax(0,1fr) 190px}@media(max-width:600px){#library-search .search-row{grid-template-columns:1fr}}#queue-list .queue-row{display:grid;grid-template-columns:34px minmax(0,1fr) 5.5rem}.queue-action-slot{width:100%;align-self:start}.queue-action-slot .remove-item{width:100%}.queue-action-slot button{display:block;width:100%;margin:0 0 6px}.queue-row progress{display:block;margin-top:7px}.reading-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:16px 0}.reading-tile{border:1px solid #d5e3d8;border-radius:10px;padding:15px;min-width:0}.reading-tile p{margin:8px 0}.reading-tile ul{padding-left:20px}.search-hit{border-top:1px solid #d5e3d8;padding:18px 0}.search-hit h3{font-size:1.05rem}.search-hit p{margin:7px 0}.result-kind{display:inline-block;border-radius:5px;background:#e4eee7;padding:3px 7px;font-size:.78rem}mark{background:#fff0b8;color:inherit}a{color:#145b38;overflow-wrap:anywhere}</style></head><body>
+<header><p class="eyebrow">YOUR OFFLINE LIBRARY</p><h1>Offline Library</h1><p id="app-description">Add your first collections to build an offline library.</p><button id="library-home" type="button" data-go="read" hidden>Read your library</button><button id="manage-library" class="secondary" type="button" data-go="manage" hidden>Manage library</button><p id="summary" class="muted">Checking your library…</p></header>
+<nav id="management-steps" class="steps" aria-label="Library setup steps">
+<button type="button" data-step="location"><span>1</span> Location</button><button type="button" data-step="collections"><span>2</span> Collections</button><button type="button" data-step="download"><span>3</span> Download</button><button type="button" data-step="read" hidden><span>4</span> Read</button>
+</nav>
+<main>
+<section class="card step" data-panel="location" aria-labelledby="location-heading">
+<h2 id="location-heading">Where do you want your library?</h2>
+<fieldset class="destination-options"><legend>Choose one</legend>
+<label class="destination-choice"><input type="radio" name="destination-mode" value="local"><span><strong>This computer</strong><small>Keep the library in your home folder.</small></span></label>
+<label class="destination-choice"><input type="radio" name="destination-mode" value="external"><span><strong>Another drive or card</strong><small>Choose a hard drive, SSD, USB stick, or memory card.</small></span></label></fieldset>
+<div id="external-options" hidden><h3>How do you want to build it?</h3>
+<label class="destination-choice"><input type="radio" name="staging-strategy" value="staged" checked><span><strong>Download to a fast drive first (recommended)</strong><small>Keeps working files off your destination. Copy the finished library across when it is ready.</small></span></label>
+<label class="destination-choice"><input type="radio" name="staging-strategy" value="direct"><span><strong>Download directly to the drive</strong><small>Temporary files and repairs need extra space here. Hard drives and cards may also be slower.</small></span></label>
+<div id="stage-source-options" hidden><p>Where should we download first?</p><label class="destination-choice"><input type="radio" name="stage-source" value="system" checked><span><strong>This computer</strong></span></label><label class="destination-choice"><input type="radio" name="stage-source" value="other"><span><strong>Another fast drive</strong></span></label></div>
+<div id="stage-destination-area" class="location-box" hidden><label for="stage-drive-list">Drive for your finished library</label><select id="stage-drive-list"><option value="">Choose a drive</option></select><label id="physical-confirm" class="collection-choice" hidden><input id="confirm-different-drives" type="checkbox"><span>These are two different physical drives.</span></label><p id="stage-destination-status" class="status" role="status"></p></div></div>
+<div id="library-drive-area" class="location-box" hidden><label for="drive-list">Choose a drive</label><select id="drive-list"><option value="">Choose a drive</option></select><button id="refresh-drives" type="button" class="secondary">Refresh drives</button></div>
+<p id="location-status" class="status" role="status"></p>
+<details><summary>Advanced settings</summary><p class="muted"><span id="library-folder-label">Library folder</span>: <code id="root"></code></p><button id="choose-library" type="button" class="secondary" hidden>Choose a different folder</button><div id="stage-details" hidden><p class="muted">Finished library folder: <code id="stage-destination">Not selected</code></p><button id="choose-stage-destination" type="button" class="secondary" hidden>Choose a different destination folder</button><label>Space to leave free on destination (GiB)<input id="stage-reserve" type="number" min="2" max="1000000" step="1" value="2"></label></div>
+<form id="reserve-form"><label>Space to leave free (GiB)<input id="reserve-gib" type="number" min="2" max="1000000" step="1" required></label><button id="reserve-save" type="submit" class="secondary">Save reserve</button><p id="reserve-status" class="status" role="status"></p></form>
+<label for="benchmark-mode">Drive speed test</label><select id="benchmark-mode"><option value="quick">Quick</option><option value="extended">Extended</option></select><p class="muted">The extended test writes about 17.5 GiB in temporary files and can take several minutes.</p><button id="benchmark-library" type="button" class="secondary">Test this library drive</button><button id="benchmark-destination" type="button" class="secondary" hidden>Test destination drive</button><button id="cancel-benchmark" type="button" class="secondary" hidden>Cancel speed test</button><p id="benchmark-status" class="status" role="status"></p></details>
+<div class="step-actions"><span></span><button id="location-next" type="button">Continue to collections</button></div></section>
+<section class="card step" data-panel="collections" aria-labelledby="collections-heading" hidden><h2 id="collections-heading">Choose your collections</h2><p class="muted">Choose a preset, then adjust your selection.</p>
+<h3>What would you like to do?</h3><p class="muted">Add a starter pack to your selection, then review its collections and space before downloading.</p><div id="starter-packs" class="reading-grid"></div><p id="starter-status" class="status" role="status"></p><label for="collection-preset">Starting selection</label><select id="collection-preset"><option value="auto" selected>Recommended for this drive</option><option value="compact">32 GB (compact)</option><option value="256">256 GB</option><option value="512">512 GB</option><option value="custom">Custom selection</option></select><p id="preset-help" class="muted"></p><p id="curated-estimate" class="muted" role="status"></p><p id="curated-capacity" class="status" role="status"></p><p class="muted">Largest first within each preset. Bars show each item’s share of your selection.</p><div id="curated-collections"></div><details><summary>About these collections</summary><p class="muted">WikiHow comes from Kiwix’s 2023 archive. Its checksum is our local baseline, not a publisher checksum; the archive has known missing images. iFixit links are repaired locally after downloading. Empty pages are labelled; missing instructions cannot be restored.</p></details><button id="add-selected" type="button" hidden>Add selected to download list</button><p id="curated-status" class="status" role="status"></p>
+<details><summary>Search for more collections</summary><p class="muted">Search the Kiwix catalog while online.</p>
+<form id="search"><div class="search-row"><label>Search<input name="q" placeholder="Wikipedia, repair, gardening…" maxlength="200"></label><label>Language<select name="lang"><option value="eng">English</option><option value="">Any language</option><option value="spa">Spanish</option><option value="fra">French</option><option value="deu">German</option></select></label></div><button type="submit">Find collections</button></form>
+<div class="catalog-topics" role="group" aria-label="Browse the catalog by topic"><p class="muted">Try a topic:</p><button type="button" class="secondary" data-catalog-query="gutenberg">Books</button><button type="button" class="secondary" data-catalog-query="medical">Medical</button><button type="button" class="secondary" data-catalog-query="wikipedia">Reference</button><button type="button" class="secondary" data-catalog-query="ifixit">Repair</button><button type="button" class="secondary" data-catalog-query="wikihow">WikiHow</button></div>
+<div id="catalog" class="catalog" hidden><p id="catalog-status" class="muted" role="status"></p><div id="results"></div><div class="results-controls"><button id="prev" class="secondary">Previous</button><button id="next" class="secondary">Next</button></div></div>
+</details><div class="step-actions"><button type="button" class="secondary" data-go="location">Back</button><span><button id="review-existing" type="button" class="secondary" data-go="download" hidden>Review existing downloads</button><button id="collections-next" type="button">Review downloads</button></span></div></section>
+<section class="card step" data-panel="download" aria-labelledby="download-heading" hidden><h2 id="download-heading">Review and download</h2><p>Check your list, then start downloading.</p><div id="download-queue"><h3>Download list</h3><p class="muted">Downloads can run simultaneously. Repairs and search preparation run one at a time. Choose 1 for slow archive drives. Your list is saved for later.</p><form id="bandwidth-form"><label for="download-bandwidth">Total download limit (MiB/s, 0 = unlimited)</label><input id="download-bandwidth" type="number" min="0" max="1024" step="0.001" value="0" required><button id="bandwidth-save" type="submit" class="secondary">Save bandwidth limit</button><p id="bandwidth-status" class="status" role="status"></p></form><p class="muted">Shared across all downloads. You can change this limit while downloads are running.</p><form id="concurrency-form"><label for="download-concurrency">Simultaneous downloads</label><input id="download-concurrency" type="number" min="1" max="8" step="1" value="4" required><label for="download-stall-seconds">Reconnect after no data for (seconds)</label><input id="download-stall-seconds" type="number" min="15" max="600" step="1" value="60" required><button id="concurrency-save" type="submit" class="secondary">Save download settings</button><p id="concurrency-status" class="status" role="status"></p></form><p class="muted">Pause the list to change these settings. Temporary connection failures retry up to three times; matching partial downloads are resumed when supported.</p><p id="queue-error" class="status" role="status"></p><p id="queue-estimate" class="muted" role="status"></p><p id="queue-capacity" class="muted" role="status"></p><h3>Space now</h3><dl id="queue-space" class="space-details"></dl><div id="queue-list"></div><div class="queue-actions"><button id="queue-start" type="button" disabled>Start download list</button><button id="queue-stop" type="button" class="secondary" hidden>Pause download list</button></div><p id="queue-status" class="status" role="status"></p><h3>Recent downloads</h3><p class="muted">Latest 50 outcomes for this library. History records completion after verification and preparation.</p><div id="download-history"></div></div><div id="saved-partials" hidden><h3>Incomplete downloads</h3><p class="muted">Resume where you left off, or discard an incomplete file.</p><div id="partial-list"></div></div><p id="download-status" class="status" role="status"></p><progress id="progress" value="0" max="100" hidden></progress><button id="cancel-download" class="secondary" hidden>Pause download</button><button id="retry-download" hidden>Resume download</button><button id="discard-download" class="secondary" hidden>Discard incomplete download</button>
+<details><summary>Enter download details manually</summary><form id="download"><label>Download URL<input name="url" type="url" placeholder="https://…/collection.zim" required></label><label>File name<input name="name" placeholder="collection.zim" required></label><label>Expected size in bytes<input name="bytes" type="number" min="1" step="1" required></label><label>Publisher SHA-256<input name="sha256" pattern="[a-fA-F0-9]{64}" required></label><button id="add" type="submit">Download collection</button></form></details><div id="stage-copy-area" class="location-box" hidden><h3>Copy to the final destination</h3><p>When downloads finish, copy your collections to the destination. Originals stay on the first drive.</p><details><summary>Destination details</summary><code id="stage-copy-destination"></code></details><button id="stage-copy" type="button">Copy staged collections</button><p id="stage-copy-status" class="status" role="status"></p></div><div class="step-actions"><button type="button" class="secondary" data-go="collections">Back</button><button id="download-read" type="button" data-go="read" hidden>Open your library</button></div></section>
+<section class="card step" data-panel="read" aria-labelledby="read-heading" hidden><h2 id="read-heading">What would you like to explore?</h2><p>Search your downloaded library, or browse a collection below.</p><section class="reading-search"><h2>Search downloaded collections</h2><p class="muted">Search the collections on this drive.</p>
+<form id="library-search"><div class="search-row"><label>Search for<input id="library-query" required maxlength="200" placeholder="e.g. cheese making, bicycle repair"></label><button type="submit" style="align-self:end">Search library</button></div><details id="reading-filters"><summary>Refine by collection, subject or type</summary><label>Search mode<select id="library-mode"><option value="hybrid" selected>Search everything</option><option value="catalog">Titles, authors and subjects</option><option value="author">Authors</option><option value="subject">Subjects</option><option value="heading" hidden disabled>Section headings</option><option value="text" hidden disabled>Body text only</option><option value="combined">Content and titles</option><option value="titles">Titles only</option><option value="fulltext">Full text</option></select></label><div class="search-row"><label>Content type<select id="library-kind"><option value="">All types</option><option value="books">Books</option><option value="guides">Practical guides</option><option value="questions">Questions &amp; answers</option><option value="reference">Reference articles</option><option value="interactive">Interactive learning</option><option value="maps">Maps</option><option value="other">Other collections</option></select></label><label>Collection subject<select id="library-topic"><option value="">All subjects</option><option value="repair">Repair &amp; practical skills</option><option value="food">Food &amp; growing</option><option value="learning">Learning &amp; science</option><option value="books">Books &amp; literature</option><option value="technology">Computers &amp; electronics</option><option value="travel">Places &amp; travel</option><option value="reference">General reference</option></select></label></div><label>Collection<select id="library-collection"><option value="">All downloaded collections</option></select></label><button id="load-collections" class="secondary" type="button">Load collections</button></details></form><p id="library-status" class="status" role="status"></p><div id="library-results"></div><div id="library-pages" class="results-controls" hidden><button id="library-prev" class="secondary" type="button">Previous results</button><button id="library-next" class="secondary" type="button">Next results</button></div></section>
+<h2>Browse your collections</h2><p id="browse-status" class="muted">Collections will appear here when the reader is ready.</p><div id="reading-browse" class="reading-grid"></div><section id="reading-recent" hidden><h2>Opened this session</h2><div id="recent-pages"></div></section><div class="step-actions"><button type="button" class="secondary" data-go="manage">Manage library</button><span></span></div></section>
+<section class="card step" data-panel="manage" aria-labelledby="manage-heading" hidden><h2 id="manage-heading">Manage your library</h2><p>Add collections, adjust your download list, or choose a different library.</p><div class="reading-grid"><article class="reading-tile"><h3>Add something to read</h3><p>Choose a starter pack or pick individual collections.</p><button type="button" data-go="collections">Add collections</button></article><article class="reading-tile"><h3>Download list</h3><p>Review progress, pause or resume items, and remove pending downloads.</p><button type="button" data-go="download">Edit download list</button></article><article class="reading-tile"><h3>Location &amp; storage</h3><p>Switch libraries or manage where downloads and working files go.</p><button type="button" data-go="location">Library location</button></article></div><div id="reader-management" hidden><details><summary>Open the full library and reader controls</summary><button id="start" type="button">Open library</button><button id="refresh-reader" class="secondary" type="button">Refresh collections</button><details><summary>Library controls</summary><button id="stop" class="secondary" type="button">Stop reader</button><button id="quit" class="secondary" type="button">Exit app</button><p class="muted">To read a copied library, choose its drive in Location.</p></details><p id="reader-status" class="status" role="status"></p></details></div></section></main><footer>Desktop preview · Raspberry Pi setup is planned for later.</footer>
+<script>
+const token=location.hash.slice(1)||sessionStorage.getItem('library-token')||'';sessionStorage.setItem('library-token',token);history.replaceState(null,'',location.pathname);
+const headers={'X-Library-Token':token};const $=x=>document.querySelector(x);const formatBytes=n=>n>=1e9?(n/1e9).toFixed(2)+' GB':n>=1e6?(n/1e6).toFixed(1)+' MB':(n/1e3).toFixed(0)+' KB';let readingNavigation=null;let bandwidthDirty=false;let concurrencyDirty=false;let downloading=false;let readerRefreshing=false;let libraryUnavailable=false;let queueUnavailable=false;let reserveDirty=false;let localItems=[];let loadedReader='';let searchState={q:'',lang:'eng',start:0,total:0};let catalogSearchVersion=0;let stateRequested=0,stateApplied=0;let stagingCandidates=[],stagingCandidatesRoot='';let savedReserveGiB=2;let lastLibraryState=null;let stageCapacity=null;let activeBenchmarkStatus=null;let benchmarkPromise=null;let benchmarkController=null;
+async function api(path,body,signal){const r=await fetch(path,{signal,method:body?'POST':'GET',headers:{...headers,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});if(!r.ok)throw Error(await r.text());return r.json()}
+// Public, versioned Kiwix catalog entries; downloads still resolve publisher metadata.
+const curatedCollections = [
+  ['wikiHow — archived 2023 edition','00000000-0000-0000-0000-000000000001',51256446526,true],
+  ['Wikipedia — with pictures','50e94998-c1ec-b5e7-ec34-499f1d907c30',127418087648,true],
+  ['Wikipedia — no pictures','c22094d0-6ad1-6360-36b7-dab953595143',52690707456,false],
+  ['Best of Wikipedia — no pictures','65d4124b-2288-7c85-1e69-e675a5bbd288',2745850880,false],
+  ['iFixit repair guides','bff12bdb-1fac-6ab0-ed6c-9f5f030722b3',3570696192,true],
+  ['WikiMed Medical Encyclopedia','1f8cf2fe-e076-e018-2e09-004387350cba',1047708672,true],
+  ['Wikibooks','4448bebc-ab7f-39c6-dd4d-736fe694a55f',4739739728,true],
+  ['Wikibooks — no pictures','6ee20aaa-df75-69d8-477a-cb27cbc4c589',3544612864,false],
+  ['Wikivoyage','2d7d9c72-e77d-3ce3-b8f6-140790d36f7a',1071168673,true],
+  ['Wikisource','e291b2f1-52cd-92a1-4cdc-c955aed4a954',8615937017,true],
+  ['Wikisource — no pictures','322c01de-c325-7aad-87fe-9a3cd3cd4a3c',3905589248,false],
+  ['Wiktionary — no pictures','f2c2fd4e-dba3-2b22-7318-3190feb051bc',9156425592,true],
+  ['Gardening & Landscaping Q&A','e6c0cf4d-c610-0ef0-bb79-ebae48c61c63',933097375,true],
+  ['Cooking Q&A','824a49b9-e96e-a649-26e3-6d5bd97872cb',238098128,true],
+  ['Home Improvement Q&A','3ce0e841-f500-513e-2a64-c3650e7e89a1',2086024326,true],
+  ['Motor Vehicle Mechanics Q&A','e45b4b88-7c3d-0111-e8fb-0c956bb17322',341672133,true],
+  ['Bicycles Q&A','2c464b36-1ea7-2646-ba6a-3b7504ec4a63',499254876,true],
+  ['The Great Outdoors Q&A','86b8cb92-0a13-e696-1605-276b52d4db98',141820374,true],
+  ['Woodworking Q&A','c3a5295f-07b9-64af-fce6-e9eeb93bdc75',106657287,true],
+  ['Electronics Q&A','fe8086f4-df2e-93e9-5a46-acc5e7fa6fcc',4261397539,true],
+  ['Medical Sciences Q&A','2f760ea4-f61e-962c-0e85-f62f6aa46552',60659941,true],
+  ['Sustainable Living Q&A','39c4b70b-829a-a0ab-df3c-30a590cbdea4',27687333,true],
+  ['United States maps','b6707563-af93-c0e8-fe55-853fc367b4b2',16601605855,false],
+  ['Biology Q&A','0b4cd5bc-03d9-862b-88d2-ea9a8bd16ddf',425074688,true],
+  ['Engineering Q&A','9dc7bf86-7099-e29f-a0d9-d0f74bab8f1e',258556632,true],
+  ['PhET Interactive Simulations','31b210ed-4584-ae30-88d8-773bfa3af6d7',108981169,true],
+  ['Unix & Linux Q&A','9d76cccf-7496-ab2e-1043-bc066e3f999d',1316253305,false],
+  ['Arduino Q&A','b1868396-10a4-ba5a-6481-3ee07081e1af',259577739,false],
+  ['Raspberry Pi Q&A','1756c798-5362-5258-8b60-262c53da2bc0',298502933,false],
+  ['Server Fault','8b14e9a1-00b9-d813-3eb7-1e496c6d5a84',1636338002,false],
+  ['Super User Q&A','2a94a9de-f76c-25ac-57f8-da022968f937',4014454341,false],
+  ['Gutenberg — science','438c7985-7b24-b470-9dfc-7b0cafa02269',17724715008,false],
+  ['Gutenberg — agriculture','4dc2d539-98f7-0b76-7256-0943f0c52e60',4532683776,false],
+  ['Gutenberg — technology','1bc843c0-c4d3-5241-90b8-f70496cff27b',13154803712,false],
+  ['Gutenberg — British literature','b6a29128-cbf7-ab30-afe6-ff641b25b5b9',16152121344,false],
+  ['Gutenberg — American literature','7541da9a-701e-ef12-983b-0da1f0a29729',16022294528,false],
+  ['Gutenberg — juvenile literature','f922f53e-e58b-b754-bc61-8d3a1e067e09',19770263552,false],
+  ['Gutenberg — world history','63051bb6-8b41-807a-6b65-d5f44c08629e',40254449664,false],
+  ['Gutenberg — geography','40fac4bc-6243-419d-2709-4b6e59dae976',8095142912,false],
+  ['Gutenberg — music','752f643c-dd14-6156-622d-421c8d7c432a',3994272768,false],
+  ['Gutenberg — fine arts','ff6b7691-c044-c3b4-72ec-a52365cc8080',22752881664,false],
+  ['Gutenberg — history of the Americas','c4261532-e5b7-46f2-2905-e8fdb136030a',10196818944,false],
+  ['Gutenberg — local history of the Americas','01525ae1-a345-142e-caf0-11f9e443f1c2',9888134144,false],
+];
+// Icons are decorative; names and sizes remain available as text.
+function collectionIcon(title){
+  const t=title.toLowerCase();let path='M4 3h11l5 5v13H4z M14 3v6h6 M8 13h8 M8 17h8';
+  if(/medical|wikimed/.test(t))path='M9 3h6v6h6v6h-6v6H9v-6H3V9h6z';
+  else if(/wikihow/.test(t))path='M14 5a5 5 0 0 0-6 6L3 16l5 5 5-5a5 5 0 0 0 6-6l-3 3-4-4z';
+  else if(/wikipedia|science/.test(t))path='M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20 M2 12h20 M12 2c3 3 3 17 0 20 M12 2c-3 3-3 17 0 20';
+  else if(/book|gutenberg|source|dictionary|wiktionary/.test(t))path='M4 4c3-1 5-.5 8 1v15c-3-1.5-6-2-8-1z M20 4c-3-1-5-.5-8 1v15c3-1.5 6-2 8-1z';
+  else if(/map|voyage/.test(t))path='M12 22s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z M12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6';
+  else if(/ifixit|repair|mechanic|wood|improvement|bicycle/.test(t))path='M14 5a5 5 0 0 0-6 6L3 16l5 5 5-5a5 5 0 0 0 6-6l-3 3-4-4z';
+  else if(/garden|outdoor|sustain/.test(t))path='M20 4C10 4 5 8 5 14a5 5 0 0 0 5 5c6 0 10-5 10-15z M4 21c3-5 6-8 11-11';
+  else if(/unix|arduino|raspberry|server|user|electronic/.test(t))path='M8 6 3 12l5 6 M16 6l5 6-5 6 M14 4l-4 16';
+  const box=document.createElement('span');box.className='item-icon';box.setAttribute('aria-hidden','true');
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.7');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');
+  const shape=document.createElementNS('http://www.w3.org/2000/svg','path');shape.setAttribute('d',path);svg.append(shape);box.append(svg);return box;
+}
+function sizeVisual(bytes,total,selected){
+  const wrap=document.createElement('div'),caption=document.createElement('div');caption.className='item-share';
+  if(!bytes){caption.textContent='Size unknown';wrap.append(caption);return wrap}
+  if(!selected||!total){caption.textContent=selected?'Share unavailable':'Not selected';wrap.append(caption);return wrap}
+  const share=bytes/total*100;caption.textContent=(share<0.1?'<0.1':share.toFixed(1))+'%';caption.title='Share of known selected sizes';
+  const track=document.createElement('div');track.className='size-track';track.setAttribute('aria-hidden','true');const fill=document.createElement('span');fill.className='size-fill';fill.style.width=Math.min(100,share)+'%';track.append(fill);wrap.append(caption,track);return wrap;
+}
+let collectionMode='auto', automaticPreset, activeSetupStep='location', collectionPreferencesReady=!window.desktopHost?.getStagingOptions;
+const compactIDs=new Set(['65d4124b-2288-7c85-1e69-e675a5bbd288','1f8cf2fe-e076-e018-2e09-004387350cba','6ee20aaa-df75-69d8-477a-cb27cbc4c589','322c01de-c325-7aad-87fe-9a3cd3cd4a3c','f2c2fd4e-dba3-2b22-7318-3190feb051bc']);
+const developerIDs=new Set(['9d76cccf-7496-ab2e-1043-bc066e3f999d','b1868396-10a4-ba5a-6481-3ee07081e1af','1756c798-5362-5258-8b60-262c53da2bc0','8b14e9a1-00b9-d813-3eb7-1e496c6d5a84','2a94a9de-f76c-25ac-57f8-da022968f937']);
+function presetIncludes(item,preset){
+  const [title,id,,recommended]=item;
+  if(preset==='compact')return compactIDs.has(id);
+  if(preset==='256')return (recommended&&!title.startsWith('Wikipedia — with'))||title.startsWith('Wikipedia — no')||title==='United States maps';
+  if(preset==='512')return recommended||title.startsWith('Gutenberg —')||title==='United States maps';
+  return false;
+}
+const starterPacks=[
+ {id:'fix',title:'Fix things',description:'Repairs for devices, homes, bicycles and vehicles.',names:['iFixit repair guides','Home Improvement Q&A','Bicycles Q&A','Motor Vehicle Mechanics Q&A'],note:'Includes community advice. iFixit repair cannot restore missing instructions.'},
+ {id:'grow',title:'Grow food',description:'Gardening questions, sustainable living and older farming books.',names:['Gardening & Landscaping Q&A','Sustainable Living Q&A','Gutenberg — agriculture'],note:'Community advice and historical books; local conditions and current practices vary.'},
+ {id:'make',title:'Cook & make',description:'Cooking, woodworking and a broad collection of textbooks.',names:['Cooking Q&A','Woodworking Q&A','Wikibooks'],note:'Downloads whole collections, not only the examples mentioned here.'},
+ {id:'learn',title:'Learn & explore',description:'Interactive science, biology questions and illustrated textbooks.',names:['PhET Interactive Simulations','Biology Q&A','Wikibooks'],note:'Coverage and supported activities vary by collection.'},
+ {id:'stories',title:'Stories & books',description:'Public-domain British, American and juvenile literature.',names:['Gutenberg — British literature','Gutenberg — American literature','Gutenberg — juvenile literature'],note:'Older works may contain dated language and themes; juvenile classification is not age vetting.'}
+];
+function starterItems(pack){return curatedCollections.filter(item=>pack.names.includes(item[0]))}
+function renderStarterPacks(){
+ const area=$('#starter-packs');area.replaceChildren();
+ for(const pack of starterPacks){const items=starterItems(pack),plan=selectionFootprint({queue:[]},items);const card=document.createElement('article');card.className='reading-tile';const title=document.createElement('h3');title.textContent=pack.title;const description=document.createElement('p');description.textContent=pack.description;const size=document.createElement('p');size.className='muted';size.textContent='About '+formatBytes(plan.finalTotal)+' finished · '+formatBytes(plan.total)+' to build';const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Included collections';const list=document.createElement('ul');for(const item of items){const li=document.createElement('li');li.textContent=item[0];list.append(li)}const note=document.createElement('p');note.className='muted';note.textContent=pack.note;details.append(summary,list,note);const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent='Add '+pack.title+' to selection';button.onclick=()=>{let added=0;for(const item of items){const box=document.querySelector('#curated-collections input[value="'+item[1]+'"]');if(!box.checked){box.checked=true;added++}}collectionMode='custom';$('#collection-preset').value='custom';updateCuratedEstimate();rememberCollectionSelection();$('#starter-status').textContent=added+' collections added to your selection. Review downloads to continue.'};card.append(title,description,size,details,button);area.append(card)}
+}
+const groups=[['compact','32 GB preset'],['256','256 GB preset'],['512','512 GB preset'],['other','Other collections'],['developer','Other collections — developer']];
+for(const [group,title] of groups){
+  const items=curatedCollections.filter(item=>{
+    if(developerIDs.has(item[1]))return group==='developer';
+    const first=['compact','256','512'].find(preset=>presetIncludes(item,preset))||'other';return first===group;
+  }).sort((a,b)=>(b[2]||0)-(a[2]||0)||a[0].localeCompare(b[0]));
+  if(!items.length)continue;
+  const section=document.createElement('section');section.className='collection-group';section.dataset.presetGroup=group;
+  const heading=document.createElement('h3');heading.textContent=title;section.append(heading);
+  for(const [name,id,approxBytes] of items){
+    const label=document.createElement('label');label.className='collection-choice';label.dataset.collectionId=id;
+    const input=document.createElement('input');input.type='checkbox';input.value=id;input.setAttribute('aria-label',name+(approxBytes?' — about '+formatBytes(approxBytes):' — size unavailable'));
+    const body=document.createElement('div');body.className='item-body';const line=document.createElement('div');line.className='item-line';
+    const nameNode=document.createElement('span');nameNode.className='item-title';nameNode.textContent=name;
+    const size=document.createElement('span');size.className='item-size';size.textContent=approxBytes?'About '+formatBytes(approxBytes):'Size unknown';
+    const visual=document.createElement('div');visual.className='item-visual';line.append(nameNode,size);body.append(line,visual);
+    label.append(input,collectionIcon(name),body);section.append(label);
+  }
+  $('#curated-collections').append(section);
+}
+function updateCuratedEstimate() {
+  updatePresetSuggestion();
+  const selected=curatedCollections.filter(item=>document.querySelector('#curated-collections input[value="'+item[1]+'"]:checked'));
+  const unknown=selected.filter(item=>!item[2]).length;
+  const total=selected.reduce((sum,item)=>sum+item[2],0);for(const [name,id,bytes] of curatedCollections){const row=document.querySelector('[data-collection-id="'+id+'"]');const checked=row.querySelector('input').checked;row.querySelector('.item-visual').replaceChildren(sizeVisual(bytes,total,checked));}
+  const plan=selectionFootprint({queue:[]},selected);$('#curated-estimate').textContent=selected.length+' selected · build space: about '+formatBytes(plan.total)+' · finished library: about '+formatBytes(plan.finalTotal)+(unknown?' plus '+unknown+' unknown size'+(unknown===1?'':'s'):'');
+  const check=checkSelectionCapacity(lastLibraryState,stageCapacity,selected);$('#curated-capacity').textContent=check.message;$('#curated-capacity').hidden=!check.message;
+}
+function applyCollectionPreset(preset){
+  for(const item of curatedCollections)document.querySelector('#curated-collections input[value="'+item[1]+'"]').checked=presetIncludes(item,preset);
+}
+function rememberCollectionSelection(){
+  if(window.desktopHost?.setCollectionSelection)window.desktopHost.setCollectionSelection({mode:collectionMode,ids:curatedCollections.filter(item=>document.querySelector('#curated-collections input[value="'+item[1]+'"]').checked).map(item=>item[1])});
+}
+$('#curated-collections').addEventListener('change',()=>{collectionMode='custom';$('#collection-preset').value='custom';updateCuratedEstimate();rememberCollectionSelection()});
+$('#collection-preset').addEventListener('change',event=>{
+  collectionMode=event.target.value;
+  if(collectionMode==='auto')automaticPreset=undefined;
+  else if(collectionMode!=='custom')applyCollectionPreset(collectionMode);
+  updateCuratedEstimate();if(collectionPreferencesReady)rememberCollectionSelection();
+});
+
+function runningQueueItems(state){return Array.isArray(state.queueRunning)?state.queueRunning:(state.queueCurrent?[state.queueCurrent]:[])}
+function repairAllowance(id,bytes,title=''){return bytes>0&&(id==='bff12bdb-1fac-6ab0-ed6c-9f5f030722b3'||/ifixit/i.test(title))?bytes+Math.max(134217728,Math.ceil(bytes/4)):0}
+const searchSpaceProfiles=/*SEARCH_SPACE_PROFILES*/null;
+function collectionSearchSpace(id,title,sourceBytes=0){
+ const name=String(title||'').toLowerCase();
+ const profile=searchSpaceProfiles.collections.find(item=>item.catalogID===id||name.startsWith(item.prefix));
+ if(profile)return scaleSearchSpace(profile,sourceBytes);
+ const family=id==='bff12bdb-1fac-6ab0-ed6c-9f5f030722b3'?'ifixit':['ifixit','wikihow','gutenberg','maps'].find(value=>name.includes(value));
+ return family?scaleSearchSpace(searchSpaceProfiles.families[family]||searchSpaceProfiles.default,sourceBytes):{peakBytes:0,finishedBytes:0};
+}
+function scaleSearchSpace(profile,sourceBytes){
+ const ratio=profile.sourceBytes>0&&sourceBytes>profile.sourceBytes?sourceBytes/profile.sourceBytes:1;
+ return {...profile,peakBytes:Math.ceil(profile.peakBytes*ratio),finishedBytes:Math.ceil(profile.finishedBytes*ratio)};
+}
+function selectionFootprint(state,selected){
+ const items=new Map();for(const item of [...(state.queue||[]),...runningQueueItems(state)])items.set(item.id,{bytes:item.approxBytes||0,title:item.title});for(const [title,id,bytes] of selected)items.set(id,{bytes,title});
+ let total=0,finalTotal=0,indexTotal=0,temporaryPeak=0,unknown=false;
+ for(const [id,item] of items){
+  const repair=repairAllowance(id,item.bytes,item.title),index=collectionSearchSpace(id,item.title,item.bytes);
+  total+=item.bytes+repair;finalTotal+=item.bytes+(repair?repair-item.bytes:0);
+  indexTotal+=index.finishedBytes;temporaryPeak=Math.max(temporaryPeak,index.peakBytes-index.finishedBytes);
+  unknown ||= !item.bytes;
+ }
+ const searchAssets=items.size?700000000:0;
+ // Finished indexes accumulate; only one collection's temporary workspace is active.
+ return {total:total+searchAssets+indexTotal+temporaryPeak,finalTotal:finalTotal+searchAssets+indexTotal,unknown};
+}
+function stagingRecommendation(plan,available,candidates){
+ if(plan.unknown||plan.total<=available||plan.finalTotal>available)return '';
+ const candidate=candidates.find(item=>Number.isFinite(item.freeBytes)&&item.freeBytes-item.reserveGiB*1073741824>=plan.total);
+ if(!candidate)return '';
+ return 'The finished library fits here, but building it needs '+formatBytes(plan.total)+' including temporary files. Stage on '+candidate.label+' first, then copy the finished library here.'+(candidate.physicalCheckAvailable===false?' Confirm that the drives are physically separate.':'');
+}
+function recommendPreset(state,destination,staged,downloadReserve,destinationReserve,candidates=[]){
+  if(!state||state.libraryError||!Number.isFinite(state.freeBytes))return {preset:null,message:'Could not check free space. Choose an available drive.'};
+  if(!Number.isInteger(downloadReserve)||downloadReserve<2||downloadReserve>1000000||(staged&&(!Number.isInteger(destinationReserve)||destinationReserve<2||destinationReserve>1000000)))return {preset:null,message:'Set a valid free-space reserve.'};
+  if(staged&&(!destination||!Number.isFinite(destination.freeBytes)))return {preset:null,message:'Choose a drive for your finished library.'};
+  if(staged&&destination.sameFilesystem)return {preset:null,message:'Choose different drives for downloading and your finished library.'};
+  const downloadRoom=Math.max(0,state.freeBytes-downloadReserve*1073741824);
+  const destinationRoom=staged?Math.max(0,destination.freeBytes-destinationReserve*1073741824):Infinity;
+  let stagingHint='';
+  for(const preset of ['512','256','compact']){
+    const plan=selectionFootprint(state,curatedCollections.filter(item=>presetIncludes(item,preset)));
+    if(plan.unknown)return {preset:null,message:'Some collection sizes are unknown. Choose a selection below.'};
+    if(!staged&&!stagingHint){const hint=stagingRecommendation(plan,downloadRoom,candidates);if(hint)stagingHint='For the '+(preset==='compact'?'32 GB':preset+' GB')+' selection: '+hint;}
+    if(plan.total<=downloadRoom&&plan.finalTotal<=destinationRoom)return {preset,message:'Suggested for this drive: '+(preset==='compact'?'32 GB (compact)':preset+' GB')+'.'+(stagingHint?' '+stagingHint:'')};
+  }
+  return {preset:null,message:stagingHint||'No preset fits. Choose fewer collections or another drive.'};
+}
+function updatePresetSuggestion(){
+  if(!collectionPreferencesReady||downloading||!['location','collections'].includes(activeSetupStep))return;
+  let suggestion={preset:null,message:'Choose a library location first.'};
+  if(lastLibraryState&&selectedDestinationMode&&(!window.desktopHost||selectedLibraryDrive)&&!(selectedDestinationMode==='external'&&(selectedStrategy==='direct'||selectedStageSource==='other')&&selectedLibraryDrive==='home'))suggestion=recommendPreset(lastLibraryState,stageCapacity,selectedDestinationMode==='external'&&selectedStrategy==='staged',Number($('#reserve-gib').value),Number($('#stage-reserve').value),selectedDestinationMode==='external'&&selectedStrategy==='direct'&&stagingCandidatesRoot===lastLibraryState.root?stagingCandidates:[]);
+  $('#preset-help').textContent=suggestion.message;
+  if(collectionMode==='auto'&&automaticPreset!==suggestion.preset){automaticPreset=suggestion.preset;applyCollectionPreset(suggestion.preset)}
+}
+function checkSelectionCapacity(state,destination,selected){
+ if(!state)return {message:'',blocked:false};
+ if(!Number.isFinite(state.freeBytes))return {message:'Could not check free space. Reconnect or choose another drive.',blocked:false};
+ const {total,finalTotal,unknown}=selectionFootprint(state,selected);const available=Math.max(0,state.freeBytes-Number($('#reserve-gib').value||2)*1073741824);
+ const hasExisting=state.archiveCount>0||(state.partials||[]).length>0||state.queueActive;
+ if(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&destination?.sameFilesystem)return {message:'Choose different drives for downloading and your finished library.',blocked:true};
+ if(total>available){const stagingHint=selectedDestinationMode==='external'&&selectedStrategy==='direct'&&stagingCandidatesRoot===state.root?stagingRecommendation({total,finalTotal,unknown},available,stagingCandidates):'';return {message:stagingHint||'About '+formatBytes(total-available)+' more space needed on the download drive. '+(hasExisting?'Existing downloads may reduce this.':'Choose fewer collections or another drive.'),blocked:!hasExisting&&!unknown}}
+ if(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&destination&&Number.isFinite(destination.freeBytes)){const room=Math.max(0,destination.freeBytes-Number($('#stage-reserve').value||2)*1073741824);if(finalTotal>room){return {message:'About '+formatBytes(finalTotal-room)+' more space needed on the destination. '+(destination.hasArchives?'Existing files may reduce this.':'Choose fewer collections or another drive.'),blocked:!destination.hasArchives&&!unknown}}}
+ return {message:unknown?'Some collection sizes are unknown.': '',blocked:false};
+}
+async function addSelected(){
+  const button=$('#add-selected'),status=$('#curated-status');
+  const selected=curatedCollections.filter(item=>document.querySelector('#curated-collections input[value="'+item[1]+'"]:checked'));
+  if(!selected.length){status.textContent='Choose at least one collection, or continue with your existing download list.';return false}
+  button.disabled=true;let added=0, skipped=0;
+  try {
+    const state=await api('/api/state');let dest=stageCapacity;if(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&selectedStageDestination){dest=await api('/api/stage-validate',{destination:selectedStageDestination});stageCapacity=dest;renderStageOptions();if(dest.physicalCheckAvailable===false&&!$('#confirm-different-drives').checked)throw Error('Confirm that staging and destination are on different physical drives.');if(dest.sameFilesystem)throw Error('Staging and destination are on the same drive. Choose direct writing or a different drive.')}const capacity=checkSelectionCapacity(state,dest,selected);$('#curated-capacity').textContent=capacity.message;$('#curated-capacity').hidden=!capacity.message;if(capacity.blocked){status.textContent='The selected collections are too large for the available space.';return false}const existing=new Set([...(state.queue||[]),...runningQueueItems(state)].map(item=>item.id));
+    for(const [title,id,approxBytes] of selected){
+      if(existing.has(id)){skipped++;continue}
+      await api('/api/queue/add',{id,title,approxBytes});existing.add(id);added++;
+    }
+    status.textContent=added+' added to the download list.'+(skipped?' '+skipped+' already in the list.':'');
+    return true;
+  } catch(e) {status.textContent=added+' added before the list stopped: '+e.message;return false}
+  finally {button.disabled=false;await update()}
+}
+$('#add-selected').onclick=addSelected;
+async function update(){const version=++stateRequested;try{let s=await api('/api/state');
+if(['location','collections'].includes(activeSetupStep)&&selectedDestinationMode==='external'&&selectedStrategy==='staged'&&selectedStageDestination&&!s.queueActive&&!['waiting','retrying','checking','resolving','downloading','verifying','repairing','indexing','discarding'].includes(s.job.state)){
+ const destination=selectedStageDestination;let info=null;try{info=await api('/api/stage-validate',{destination})}catch{}
+ if(version<stateApplied)return;
+ if(destination===selectedStageDestination&&selectedDestinationMode==='external'&&selectedStrategy==='staged'){stageCapacity=info;renderStageOptions()}
+}
+if(version<stateApplied)return;stateApplied=version;if(lastLibraryState?.root!==s.root){concurrencyDirty=false;bandwidthDirty=false;refreshDrives();}lastLibraryState=s;renderSpaceDetails(s);renderDownloadHistory(s.downloadHistory||[]);if(!bandwidthDirty)$('#download-bandwidth').value=String(Number(((s.bandwidthKiB||0)/1024).toFixed(3)));$('#download-bandwidth').disabled=!!s.libraryError||!!s.queueError;$('#bandwidth-save').disabled=!!s.libraryError||!!s.queueError;$('#download-status').classList.toggle('is-error',s.job.state==='failed');if(activeBenchmarkStatus&&s.job.name?.startsWith('Testing ')){activeBenchmarkStatus.textContent=s.job.name+(s.job.total?' — '+Math.floor(100*s.job.done/s.job.total)+'%':'…')}$('#summary').textContent=s.archiveCount+' collection'+(s.archiveCount===1?'':'s')+' available'+(Number.isFinite(s.freeBytes)?' · '+(s.freeBytes/1e9).toFixed(1)+' GB free for collections':s.spaceError?' · '+s.spaceError:'');$('#root').textContent=s.root;$('#summary').hidden=!s.libraryError&&!(s.archiveCount>0)&&!selectedLibraryDrive;if(s.libraryError)$('#summary').textContent=s.libraryError;if(s.readerURL && s.readerURL!==loadedReader){loadedReader=s.readerURL;loadLocalCollections().catch(()=>{loadedReader=''})}if(!s.readerURL){loadedReader=''}downloading=!!s.queueActive||['waiting','retrying','downloading','resolving','checking','verifying','discarding','repairing','indexing'].includes(s.job.state);libraryUnavailable=!!s.libraryError;queueUnavailable=!!s.queueError;if(Number.isFinite(s.reserveBytes)){savedReserveGiB=s.reserveBytes/1073741824;if(!reserveDirty)$('#reserve-gib').value=String(savedReserveGiB)}$('#reserve-gib').disabled=downloading||libraryUnavailable||queueUnavailable;$('#reserve-save').disabled=downloading||libraryUnavailable||queueUnavailable;$('#queue-error').textContent=s.queueError||'';$('#add').disabled=downloading||libraryUnavailable;$('#stage-copy').disabled=downloading||libraryUnavailable||!(s.archiveCount>0)||!!stageCapacity?.sameFilesystem;$('#review-existing').hidden=!(s.queue?.length||s.queueCurrent);$('#start').disabled=libraryUnavailable||readerRefreshing||!(s.archiveCount>0);$('#download-read').hidden=!(s.archiveCount>0);document.querySelector('[data-step=read]').disabled=!(s.archiveCount>0);$('#stop').disabled=readerRefreshing;renderSavedPartials(s.partials||[]);updateCuratedEstimate();renderQueue(s.queue||[],s.queueCurrent,s.queueActive,s.freeBytes,s.reserveBytes,s.queueRunning||[]);$('#download-concurrency').disabled=downloading||libraryUnavailable||queueUnavailable;$('#download-stall-seconds').disabled=downloading||libraryUnavailable||queueUnavailable;$('#concurrency-save').disabled=downloading||libraryUnavailable||queueUnavailable;if(!concurrencyDirty){$('#download-concurrency').value=String(s.downloadConcurrency||4);$('#download-stall-seconds').value=String(s.downloadStallSeconds||60);}$('#cancel-download').textContent=['repairing','indexing'].includes(s.job.state)?'Pause':'Pause download';$('#cancel-download').hidden=!downloading||!!s.queueActive||s.job.state==='discarding';const listedPartial=(s.partials||[]).find(part=>part.name===s.job.name);$('#retry-download').hidden=!s.canRetry||!!listedPartial?.canResume;$('#discard-download').hidden=!s.canDiscard||!!listedPartial;document.querySelectorAll('.download-result').forEach(b=>b.disabled=downloading||libraryUnavailable);document.querySelectorAll('.queue-add').forEach(b=>b.disabled=libraryUnavailable||queueUnavailable);$('#progress').hidden=!['downloading','checking','verifying','repairing','indexing'].includes(s.job.state);if(s.job.state==='indexing'){if(s.job.total)$('#progress').value=s.job.done/s.job.total*100;else $('#progress').removeAttribute('value');$('#download-status').textContent='Preparing search…'}else if(s.job.state==='repairing'){$('#progress').value=s.job.total?s.job.done/s.job.total*100:0;$('#download-status').textContent='Repairing links…'}else if(s.job.state==='discarding'){$('#download-status').textContent='Discarding incomplete download…'}else if(s.job.state==='resolving'){$('#download-status').textContent='Checking publisher information…'}else if(s.job.state==='checking'||s.job.state==='verifying'){$('#progress').value=s.job.total?s.job.done/s.job.total*100:0;$('#download-status').textContent=(s.job.state==='checking'?'Checking saved partial: ':'Verifying downloaded file: ')+s.job.name}else if(s.job.state==='downloading'){$('#progress').value=s.job.total?s.job.done/s.job.total*100:0;$('#download-status').textContent=`${s.job.name.startsWith('Copying ')?s.job.name:('Downloading ')+s.job.name}: ${s.job.name.startsWith('Copying ')?formatBytes(s.job.done)+' / '+formatBytes(s.job.total):queueProgressText(s.job)}`}else if(s.job.state==='complete'){$('#download-status').textContent=s.job.name==='Staged collections copied'?'Staged collections copied and verified. The originals remain in the staging library.':s.job.name+' is ready. If the reader is running, use Refresh collections to add it.'}else if(s.job.state==='canceled'){$('#download-status').textContent=/^Download/.test(s.job.error||'')?'Downloads paused. Your progress is saved.':s.job.error}else if(s.job.state==='failed'||s.job.state==='retrying'||s.job.state==='waiting'||s.job.state==='paused'){$('#download-status').textContent=s.job.error||'Waiting…'}if(s.queueActive&&(s.queueRunning||[]).length)$('#download-status').textContent=queueTransferSummary(s.queueRunning||[],s.downloadConcurrency||4);applyLibraryNavigation(s);}catch(e){if(version<stateApplied)return;stateApplied=version;$('#summary').textContent='Control panel disconnected.'}}
+$('#reserve-gib').addEventListener('input',()=>{reserveDirty=true;updateCuratedEstimate()});$('#reserve-form').onsubmit=async e=>{e.preventDefault();try{await api('/api/reserve',{gib:Number($('#reserve-gib').value)});reserveDirty=false;$('#reserve-status').textContent='Reserve saved.';await update()}catch(err){$('#reserve-status').textContent=err.message}};
+let historyViewKey='';
+function renderDownloadHistory(entries){
+ const key=JSON.stringify(entries);if(key===historyViewKey)return;historyViewKey=key;
+ const area=$('#download-history');area.replaceChildren();
+ if(!entries.length){area.textContent='No completed or failed downloads yet.';return}
+ for(const entry of entries){
+  const details=document.createElement('details'),summary=document.createElement('summary');
+  const date=new Date(entry.time);summary.textContent=entry.title+' — '+(entry.state==='complete'?'Completed':'Failed')+' · '+(Number.isNaN(date.getTime())?'':date.toLocaleString());
+  const body=document.createElement('p');body.textContent=(entry.detail||'')+' · '+(entry.retries||0)+' automatic retries'+(entry.httpStatus?' · Last error: HTTP '+entry.httpStatus:'');
+  details.append(summary,body);area.append(details);
+ }
+}
+function renderSpaceDetails(state){
+ const area=$('#queue-space');area.replaceChildren();const space=state.queueSpace;
+ if(!space||!Number.isFinite(state.freeBytes)||state.libraryError)return;
+ const rows=[['Free on drive',formatBytes(state.freeBytes)],['Space to leave free',formatBytes(state.reserveBytes||0)],['Committed downloads',formatBytes(space.reservedDownloadBytes||0)],['Reserved preparation allowance',formatBytes(space.reservedPreparationBytes||0)],['Remaining downloads (estimate)',(space.remainingUnknown?'At least ':'')+formatBytes(space.remainingDownloadBytes||0)+(space.remainingUnknown?' · some sizes unknown':'')]];
+ for(const [label,value] of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;area.append(dt,dd)}
+}
+$('#download-bandwidth').addEventListener('input',()=>{bandwidthDirty=true});
+$('#bandwidth-form').onsubmit=async event=>{event.preventDefault();try{await api('/api/download/bandwidth',{mibPerSecond:Number($('#download-bandwidth').value)});bandwidthDirty=false;$('#bandwidth-status').textContent='Bandwidth limit saved.';await update()}catch(error){$('#bandwidth-status').textContent=error.message}};
+let queueViewKey='';
+function formatTransferETA(seconds){
+ if(!Number.isFinite(seconds)||seconds<0)return '';
+ if(seconds<60)return Math.max(1,Math.ceil(seconds))+'s';
+ const minutes=Math.ceil(seconds/60);if(minutes<60)return minutes+'m';
+ const hours=Math.floor(minutes/60),rest=minutes%60;
+ if(hours<24)return hours+'h'+(rest?' '+rest+'m':'');
+ const dayHours=Math.ceil(minutes/60),days=Math.floor(dayHours/24),remaining=dayHours%24;return days+'d'+(remaining?' '+remaining+'h':'');
+}
+function transferDetails(job){
+ if(!job?.speedMeasured)return 'Measuring speed…';
+ const rate=Number.isFinite(job.bytesPerSecond)&&job.bytesPerSecond>0?job.bytesPerSecond:0;
+ const speed=formatBytes(rate)+'/s';
+ if(job.total>0&&job.done>=job.total)return speed+' · Transfer received';
+ const eta=rate>0?formatTransferETA(job.etaSeconds):'';
+ return speed+' · '+(eta?'about '+eta+' transfer left':'ETA unavailable');
+}
+function queueTransferSummary(running,limit){
+ let text=running.length+' active · limit '+limit;
+ const transfers=running.map(item=>item.job).filter(job=>job?.state==='downloading');
+ const preparing=running.filter(item=>['checking','verifying','repairing','indexing'].includes(item.job?.state)).length;
+ if(transfers.length){
+  text+=' · '+transfers.length+' downloading';
+  if(transfers.every(job=>job.speedMeasured)){
+   const rate=transfers.reduce((sum,job)=>sum+(Number.isFinite(job.bytesPerSecond)&&job.bytesPerSecond>0?job.bytesPerSecond:0),0);
+   text+=' · '+formatBytes(rate)+'/s combined';
+   const etas=transfers.map(job=>job.total>0&&job.done>=job.total?0:job.bytesPerSecond>0?job.etaSeconds:null);
+   if(etas.every(eta=>Number.isFinite(eta)&&eta>=0))text+=Math.max(...etas)>0?' · current transfers about '+formatTransferETA(Math.max(...etas))+' left':' · Transfers received';
+   else text+=' · ETA unavailable';
+  }else text+=' · Measuring speed…';
+ }
+ if(preparing)text+=' · '+preparing+' preparing';
+ return text;
+}
+function queueProgressText(job){
+ if(job?.error)return job.error;
+ if(job?.state==='downloading'&&job.total>0)return formatBytes(job.done)+' / '+formatBytes(job.total)+' · '+transferDetails(job);
+ return ({complete:'Ready',waiting:'Waiting for available space…',retrying:'Reconnecting…',resolving:'Preparing',checking:'Checking',verifying:'Verifying',repairing:'Repairing links…',indexing:'Preparing search…'})[job?.state]||'Downloading';
+}
+function updateQueueProgress(items){
+ for(const row of document.querySelectorAll('#queue-list .queue-row')){
+  const job=items.find(item=>item.id===row.dataset.queueId)?.job;if(!job)continue;
+  const caption=row.querySelector('.queue-current'),progress=row.querySelector('progress');
+  if(caption)caption.textContent=queueProgressText(job);
+  if(progress){if(job.total>0)progress.value=100*job.done/job.total;else progress.removeAttribute('value')}
+ }
+}
+function renderQueue(items,current,active,freeBytes,reserveBytes,running=[]){
+  const space=lastLibraryState?.queueSpace;$('#queue-capacity').textContent=Number.isFinite(freeBytes)&&Number.isFinite(reserveBytes)?(space?'Available after reserve and active commitments: ':'Available now after reserve: ')+formatBytes(Math.max(0,freeBytes-reserveBytes-(space?.reservedDownloadBytes||0)-(space?.reservedPreparationBytes||0))):'';
+  const activeItems=running.length?running:(current?[{...current,job:lastLibraryState?.job}]:[]);let key=JSON.stringify([items,current,activeItems.map(item=>[item.id,item.title,item.approxBytes,item.paused,item.job?.state,item.job?.error]),active,downloading,libraryUnavailable,queueUnavailable,lastLibraryState?.job.state]);if(key===queueViewKey){updateQueueProgress(activeItems);return;}queueViewKey=key;
+  const area=$('#queue-list');area.replaceChildren();const all=activeItems.map(item=>({...item,isCurrent:true})).concat(items.map(item=>({...item,isCurrent:false})));
+  const known=all.filter(item=>item.approxBytes>0),unknown=all.length-known.length,total=known.reduce((sum,item)=>sum+item.approxBytes,0);
+  $('#queue-estimate').textContent=all.length?(known.length?'Build space: about '+formatBytes(selectionFootprint({queue:all},[]).total)+' · finished library: about '+formatBytes(selectionFootprint({queue:all},[]).finalTotal)+(unknown?' ('+unknown+' size'+(unknown===1?'':'s')+' unknown)':''):'Collection sizes unavailable'):'';
+  for(const item of all){
+    const row=document.createElement('div');row.className='queue-row';row.dataset.queueId=item.id;
+    const body=document.createElement('div');body.className='item-body';const line=document.createElement('div');line.className='item-line';
+    const title=document.createElement('span');title.className='item-title';title.textContent=item.title;
+    const size=document.createElement('span');size.className='item-size';size.textContent=item.approxBytes>0?'About '+formatBytes(item.approxBytes):'Size unknown';
+    line.append(title,size);body.append(line);if(item.isCurrent){const state=document.createElement('div');state.className='queue-current';state.textContent=queueProgressText(item.job||lastLibraryState?.job);body.append(state);const progress=document.createElement('progress');progress.setAttribute('aria-label',item.title+' progress');progress.max=100;if(item.job?.total>0)progress.value=100*item.job.done/item.job.total;body.append(progress)}else if(item.paused){const paused=document.createElement('div');paused.className='queue-current'+(item.networkFailure?' is-error':'');paused.textContent=item.networkFailure?'Connection failed after 3 retries. Saved progress retained.':'Paused';body.append(paused)}body.append(sizeVisual(item.approxBytes,total,true));row.append(collectionIcon(item.title),body);
+    const actions=document.createElement('div');actions.className='queue-action-slot';
+    const control=document.createElement('button');control.type='button';control.className='secondary';
+    const willPause=item.isCurrent||(active&&!item.paused),pausing=item.isCurrent&&(item.paused||item.job?.state==='pausing');
+    const action=willPause?'Pause':item.networkFailure?'Retry':item.paused?'Resume':'Start';control.textContent=pausing?'Pausing…':action;control.setAttribute('aria-label',action+' '+item.title);control.disabled=pausing||item.job?.state==='complete'||(!active&&downloading)||libraryUnavailable||queueUnavailable;
+    control.onclick=async()=>{control.disabled=true;try{if(!downloading&&concurrencyDirty){await api('/api/queue/concurrency',{concurrency:Number($('#download-concurrency').value),stallSeconds:Number($('#download-stall-seconds').value)});concurrencyDirty=false}await api(willPause?'/api/queue/pause-item':'/api/queue/resume-item',{id:item.id});await update()}catch(error){$('#queue-status').textContent=error.message;await update();control.disabled=false}};
+    actions.append(control);
+    if(!item.isCurrent){const remove=document.createElement('button');remove.type='button';remove.textContent='Remove';remove.className='secondary remove-item';remove.disabled=queueUnavailable||libraryUnavailable;remove.setAttribute('aria-label','Remove '+item.title+' from download list');remove.onclick=async()=>{try{await api('/api/queue/remove',{id:item.id});await update()}catch(e){$('#queue-status').textContent=e.message}};actions.append(remove)}row.append(actions);
+    area.append(row);
+  }
+  if(!all.length){const p=document.createElement('p');p.className='muted';p.textContent='No collections in the list.';area.append(p)}
+  $('#queue-start').hidden=active||!items.length;$('#queue-start').textContent=(lastLibraryState?.partials?.length||lastLibraryState?.job?.state==='canceled')?'Resume download list':'Start download list';$('#queue-start').disabled=downloading||libraryUnavailable||queueUnavailable||!items.some(item=>!item.paused&&!item.networkFailure);$('#queue-stop').hidden=!active;
+}
+$('#download-concurrency').addEventListener('input',()=>{concurrencyDirty=true});$('#download-stall-seconds').addEventListener('input',()=>{concurrencyDirty=true});
+$('#concurrency-form').onsubmit=async event=>{event.preventDefault();try{const concurrency=Number($('#download-concurrency').value);await api('/api/queue/concurrency',{concurrency,stallSeconds:Number($('#download-stall-seconds').value)});concurrencyDirty=false;$('#concurrency-status').textContent='Download settings saved.';await update()}catch(error){$('#concurrency-status').textContent=error.message}};
+$('#queue-start').onclick=async()=>{try{if(concurrencyDirty){await api('/api/queue/concurrency',{concurrency:Number($('#download-concurrency').value),stallSeconds:Number($('#download-stall-seconds').value)});concurrencyDirty=false}await api('/api/queue/start',{});$('#queue-status').textContent='Download list started.';await update()}catch(e){$('#queue-status').textContent=e.message}};
+$('#queue-stop').onclick=async()=>{try{await api('/api/download/cancel',{});$('#queue-status').textContent='Pausing downloads…'}catch(e){$('#queue-status').textContent=e.message}};
+let partialViewKey='';
+async function waitForDownloadsToPause(){
+  for(;;){const state=await api('/api/state');if(!state.queueActive&&!['waiting','retrying','downloading','resolving','checking','verifying','discarding','repairing','indexing'].includes(state.job.state))return state;await new Promise(resolve=>setTimeout(resolve,150))}
+}
+function renderSavedPartials(items){
+ const state=lastLibraryState;const key=JSON.stringify([downloading,items,state?.job.name,libraryUnavailable]);if(key===partialViewKey)return;partialViewKey=key;
+ const area=$('#saved-partials'),list=$('#partial-list');area.hidden=items.length===0;list.replaceChildren();
+ for(const item of items){
+  const activeItem=runningQueueItems(state||{}).find(entry=>entry.job?.name===item.name);const current=downloading&&(!!activeItem||state?.job.name===item.name);
+  const row=document.createElement('div');row.className='queue-row';const body=document.createElement('div');body.className='item-body';const label=document.createElement('div');label.className='item-title';label.textContent=item.name;
+  const progress=document.createElement('div');progress.className='item-share';progress.textContent=formatBytes(item.done)+' / '+formatBytes(item.total);body.append(label,progress);row.append(collectionIcon(item.name),body);
+  if(!current&&item.canResume&&!item.queued){const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=current?'Pause':'Resume';button.disabled=!current&&downloading;button.hidden=!current&&downloading;button.onclick=async()=>{button.disabled=true;try{if(current){await api('/api/download/cancel',{});await waitForDownloadsToPause()}else await api('/api/download/resume-saved',{name:item.name});await update()}catch(e){$('#download-status').textContent=e.message;button.disabled=false}};row.append(button)}
+  const discard=document.createElement('button');discard.type='button';discard.className='secondary';discard.textContent='Discard';discard.setAttribute('aria-label','Discard incomplete download '+item.name);discard.disabled=libraryUnavailable;
+  discard.onclick=async()=>{discard.disabled=true;try{
+    let saved=item;const queuedID=activeItem?.id||(current?state?.queueCurrent?.id:null);
+    if(downloading){await api('/api/download/cancel',{});const paused=await waitForDownloadsToPause();saved=(paused.partials||[]).find(part=>part.name===item.name);if(!saved)throw Error('The download finished before it could be discarded.');}
+    await api('/api/download/discard-saved',{name:saved.name,fingerprint:saved.fingerprint});
+    if(queuedID){const latest=await api('/api/state');if((latest.queue||[]).some(entry=>entry.id===queuedID))await api('/api/queue/remove',{id:queuedID})}
+    await update();$('#download-status').textContent='Incomplete download discarded.';
+  }catch(e){await update();$('#download-status').textContent=e.message;discard.disabled=false}};row.append(discard);list.append(row);
+ }
+}
+async function search(){
+  const state={...searchState},version=++catalogSearchVersion;
+  $('#catalog').hidden=false;$('#catalog-status').textContent='Searching Kiwix…';$('#results').replaceChildren();$('#prev').disabled=true;$('#next').disabled=true;
+  try{
+    const params=new URLSearchParams({q:state.q,lang:state.lang,start:String(state.start)});
+    const found=await api('/api/catalog?'+params);
+    if(version!==catalogSearchVersion)return;
+    searchState.total=found.total;
+    $('#catalog-status').textContent=found.total?(found.items.length?`${found.total.toLocaleString()} results; sizes are approximate.`:'No downloadable collections on this page.'):'No collections found. Try another search or language.';
+    for(const item of found.items){
+      const row=document.createElement('article');row.className='result';
+      const title=document.createElement('h3');title.textContent=item.title;
+      const detail=document.createElement('p');detail.className='muted';detail.textContent=item.summary;
+      const info=document.createElement('p');info.className='muted';info.textContent=`${item.language} · ${item.updated.slice(0,10)} · `+(item.approxBytes>0?'about '+formatBytes(item.approxBytes):'size unavailable');
+      const button=document.createElement('button');button.className='download-result';button.textContent='Download';button.disabled=downloading||libraryUnavailable;
+      button.addEventListener('click',async()=>{try{await api('/api/catalog/download',{id:item.id});await update()}catch(err){$('#download-status').textContent=err.message}});
+      const queueButton=document.createElement('button');queueButton.className='secondary queue-add';queueButton.textContent='Add to download list';queueButton.disabled=libraryUnavailable||queueUnavailable;queueButton.setAttribute('aria-label','Add '+item.title+' to download list');queueButton.addEventListener('click',async()=>{try{await api('/api/queue/add',{id:item.id,title:item.title,approxBytes:item.approxBytes>0&&item.approxBytes<=100000000000000?item.approxBytes:0});$('#queue-status').textContent=item.title+' added.';await update()}catch(err){$('#queue-status').textContent=err.message}});
+      row.append(title,detail,info,button,queueButton);$('#results').append(row)
+    }
+    $('#prev').disabled=state.start===0;$('#next').disabled=state.start+20>=found.total;
+  }catch(e){if(version===catalogSearchVersion)$('#catalog-status').textContent='Catalog unavailable: '+e.message}
+}
+const readingKindNames={books:'Book',guides:'Practical guide',questions:'Questions & answers',reference:'Reference article',interactive:'Interactive learning',maps:'Map',other:'Other collection'};
+let readingReaderURL='',recentReading=new Map();
+function visibleReadingCollections(){return localItems.filter(item=>(!$('#library-kind').value||item.kind===$('#library-kind').value)&&(!$('#library-topic').value||item.topic===$('#library-topic').value))}
+function renderReadingBrowse(){
+ const area=$('#reading-browse');area.replaceChildren();const items=visibleReadingCollections();$('#browse-status').textContent=items.length?items.length+' collection'+(items.length===1?'':'s')+' · choose a collection to read or search.':'No collections match these filters. Try All types and All subjects.';
+ for(const item of items){const card=document.createElement('article');card.className='reading-tile';const title=document.createElement('h3');title.textContent=item.title;const detail=document.createElement('p');detail.className='muted';detail.textContent=item.description?.slice(0,420)||readingKindNames[item.kind]||'Downloaded collection';const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent='Search this collection';button.disabled=item.addressConflict;button.onclick=()=>{$('#library-collection').value=item.id;updateLibraryModes();$('#library-query').focus();$('#library-query').scrollIntoView({block:'center'})};card.append(title,detail);if(!item.addressConflict&&readingReaderURL){const link=document.createElement('a');link.textContent='Open collection';link.href=new URL('/content/'+encodeURIComponent(item.name)+'/',readingReaderURL).href;link.target='_blank';link.rel='noopener noreferrer';link.addEventListener('click',()=>rememberReadingPage({title:item.title,url:link.href}));card.append(link)}const availability=document.createElement('p');availability.className='muted';availability.textContent=item.addressConflict?'This collection conflicts with another installed edition. Choose a different edition.':item.indexStatus==='no'&&!item.customText?'Title search available; full-text search unavailable.':'Search within this collection for more detail.';card.append(button,availability);area.append(card)}
+}
+function appendReadingPreview(node,text,query){
+ const raw=String(text||'');const terms=query.toLowerCase().split(/\s+/).filter(Boolean).slice(0,20);let start=0;
+ const first=terms.map(term=>raw.toLowerCase().indexOf(term)).filter(index=>index>=0);if(first.length)start=Math.max(0,Math.min(...first)-80);
+ const preview=(start?'…':'')+raw.slice(start,start+420)+(raw.length>start+420?'…':'');let position=0;
+ while(position<preview.length){const lower=preview.toLowerCase();let index=-1,term='';for(const candidate of terms){const found=lower.indexOf(candidate,position);if(found>=0&&(index<0||found<index)){index=found;term=candidate}}if(index<0){node.append(document.createTextNode(preview.slice(position)));break}node.append(document.createTextNode(preview.slice(position,index)));const mark=document.createElement('mark');mark.textContent=preview.slice(index,index+term.length);node.append(mark);position=index+term.length}
+}
+function renderReadingResult(item,query){
+ const row=document.createElement('article');row.className='search-hit';const source=localItems.find(collection=>collection.title===item.collection);const kind=document.createElement('span');kind.className='result-kind';kind.textContent=readingKindNames[source?.kind]||'Collection result';const heading=document.createElement('h3');const link=document.createElement('a');link.textContent=item.title;link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';link.onclick=()=>rememberReadingPage(item);heading.append(link);const attribution=document.createElement('p');attribution.className='muted';attribution.textContent='From '+item.collection+(item.matchMode==='titles'?' · Title match only':'');row.append(kind,heading,attribution);
+ const metadata=[item.authors?.length?'By '+item.authors.slice(0,3).join(', '):'',item.subjects?.length?'Subjects: '+item.subjects.slice(0,3).join(', '):''].filter(Boolean);if(metadata.length){const line=document.createElement('p');line.className='muted';line.textContent=metadata.join(' · ');row.append(line)}const preview=document.createElement('p');if(item.snippet)appendReadingPreview(preview,item.snippet,query);else{preview.className='muted';preview.textContent='No preview available. Open this result to read it.'}row.append(preview);$('#library-results').append(row);
+}
+function rememberReadingPage(item){
+ try{const url=new URL(item.url),base=new URL(readingReaderURL);if(url.origin!==base.origin||!url.pathname.startsWith('/content/'))return;const path=url.pathname+url.search+url.hash,key=lastLibraryState.root;const entries=recentReading.get(key)||[];recentReading.set(key,[{title:String(item.title).slice(0,300),path},...entries.filter(entry=>entry.path!==path)].slice(0,6));renderRecentPages()}catch{}
+}
+function renderRecentPages(){
+ const area=$('#recent-pages');area.replaceChildren();const entries=recentReading.get(lastLibraryState?.root)||[];$('#reading-recent').hidden=!entries.length;
+ for(const entry of entries){const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=entry.title;button.onclick=async()=>{const tab=window.open('about:blank','_blank');try{const base=await ensureReader();if(!localItems.some(item=>!item.addressConflict&&entry.path.startsWith('/content/'+encodeURIComponent(item.name)+'/')))throw Error('This collection is no longer available.');if(tab){tab.opener=null;tab.location=new URL(entry.path,base).href}else throw Error('Allow pop-ups to open this page.')}catch(error){if(tab)tab.close();$('#library-status').textContent=error.message}};area.append(button)}
+}
+for(const filter of ['#library-kind','#library-topic'])$(filter).onchange=()=>{const previous=$('#library-collection').value,select=$('#library-collection');select.replaceChildren(new Option('All matching collections',''));for(const item of visibleReadingCollections())select.add(new Option(item.title,item.id));if(visibleReadingCollections().some(item=>item.id===previous))select.value=previous;updateLibraryModes();renderReadingBrowse();$('#library-results').replaceChildren();$('#library-pages').hidden=true;librarySearchVersion++;librarySearchController?.abort();$('#library-status').textContent='Filters changed. Search again to see matching results.'};
+
+async function loadLocalCollections(){let data=await api('/api/library/collections');localItems=data.collections;let select=$('#library-collection');let previous=select.value;select.replaceChildren(new Option('All downloaded collections',''));for(const item of visibleReadingCollections()){let label=item.title+(item.description&&!item.title.includes(item.description)?' — '+item.description:'')+(item.addressConflict?' (shared reader address; search unavailable)':item.indexStatus==='no'&&!item.customText?' (title search only)':item.indexStatus==='unknown'?' (full-text index unknown)':'');select.add(new Option(label,item.id))}if(localItems.some(x=>x.id===previous))select.value=previous;updateLibraryModes();renderReadingBrowse();renderRecentPages();return localItems}
+function updateLibraryModes(){const item=localItems.find(item=>item.id===$('#library-collection').value);const custom=!!item?.customText;for(const name of ['heading','text']){const option=$('#library-mode option[value="'+name+'"]');option.hidden=!custom;option.disabled=!custom}if(!custom&&['heading','text'].includes($('#library-mode').value))$('#library-mode').value='hybrid'}
+$('#library-collection').addEventListener('change',updateLibraryModes);
+async function ensureReader(forRefresh=false){let state=await api('/api/state');if(readerRefreshing&&!forRefresh)throw Error('Reader is refreshing. Try again.');let started=state.readerURL?{readerURL:state.readerURL}:await api('/api/start',{});readingReaderURL=started.readerURL;for(let i=0;i<120;i++){if(readerRefreshing&&!forRefresh)throw Error('Reader is refreshing. Try again.');try{await loadLocalCollections();loadedReader=started.readerURL;return started.readerURL}catch(e){await new Promise(resolve=>setTimeout(resolve,500))}}throw Error('Reader did not become ready. Check the application log.')}
+$('#load-collections').onclick=async()=>{const button=$('#load-collections'),status=$('#library-status');button.disabled=true;status.textContent='Loading downloaded collections…';try{await ensureReader();status.textContent=`${localItems.length} collection${localItems.length===1?'':'s'} available for search.`}catch(err){status.textContent=err.message}finally{button.disabled=readerRefreshing}};
+let libraryPage=null, librarySearchVersion=0, librarySearchController=null, libraryPendingTab=null;
+function closePendingSearchTab(){if(libraryPendingTab){libraryPendingTab.close();libraryPendingTab=null}}
+async function showLibraryPage(state){
+  closePendingSearchTab();
+  if(librarySearchController)librarySearchController.abort();
+  const controller=new AbortController();librarySearchController=controller;
+  const version=++librarySearchVersion,status=$('#library-status');
+  $('#library-pages').hidden=true;$('#library-results').replaceChildren();status.textContent='Starting reader and searching…';
+  try{await ensureReader();if(version!==librarySearchVersion)return;let params=new URLSearchParams({q:state.query,id:state.id,mode:state.mode,kind:state.kind||'',topic:state.topic||'',start:String(state.start)});const indexed=['hybrid','catalog','author','subject','heading','text'].includes(state.mode);if(indexed)params.set('field',state.mode==='hybrid'?'deep':state.mode==='catalog'?'all':state.mode);let found=await api((indexed?'/api/library/hybrid?':'/api/library/search?')+params,undefined,controller.signal);if(version!==librarySearchVersion)return;
+    status.textContent=found.hybrid?`Showing ${found.results.length} of ${found.estimated?'about ':''}${found.total.toLocaleString()} matches · ${found.collectionsSearched} collection${found.collectionsSearched===1?'':'s'} searched.`+(found.notice?' '+found.notice:''):`${found.results.length} ${state.mode==='fulltext'?'full-text':state.mode==='combined'?'content and title':'title/name'} matches; ${found.collectionsSearched} of ${found.collectionsAttempted} collection(s) searched. Page ${Math.floor(state.start/found.perCollectionLimit)+1} shows up to ${found.perCollectionLimit} results per collection.`+(found.titleOnly?' '+found.titleOnly+' collection(s) searched by title only because they lack a full-text index.':'')+(found.skipped.length?' '+found.skipped.length+' collection(s) lack a full-text index.':'')+(found.unavailable.length?' Some collections could not be searched: '+found.unavailable.join(', '):'');
+    for(const item of found.results){renderReadingResult(item,state.query);}if(!found.results.length){const empty=document.createElement('p');empty.textContent='No matches found. Try fewer words, another collection, or All types and All subjects.';$('#library-results').append(empty)}
+    $('#library-prev').disabled=state.start===0;$('#library-next').disabled=!found.hasMore;$('#library-pages').hidden=state.start===0&&!found.hasMore;
+  }catch(err){if(version===librarySearchVersion)status.textContent=err.message}
+}
+$('#library-search').onsubmit=async e=>{e.preventDefault();let query=$('#library-query').value.trim(),id=$('#library-collection').value,mode=$('#library-mode').value,kind=$('#library-kind').value,topic=$('#library-topic').value,status=$('#library-status');if(!query)return;if(mode==='fulltext'&&localItems.some(item=>item.customText&&(!id||item.id===id))){libraryPage={query,id,kind,topic,mode:'hybrid',start:0};showLibraryPage(libraryPage);return}closePendingSearchTab();let tab=mode==='fulltext'&&id?window.open('about:blank','_blank'):null;if(!tab&&!(mode==='fulltext'&&id)){libraryPage={query,id,mode,kind,topic,start:0};showLibraryPage(libraryPage);return}const version=++librarySearchVersion;libraryPendingTab=tab;if(librarySearchController)librarySearchController.abort();$('#library-pages').hidden=true;$('#library-results').replaceChildren();status.textContent='Starting reader and searching…';try{let base=await ensureReader();if(version!==librarySearchVersion){if(tab)tab.close();return}let item=localItems.find(x=>x.id===id);if(!item)throw Error('Choose one collection for full-text search.');if(item.addressConflict)throw Error('This collection shares a reader address with another archive and cannot be searched safely.');if(!item.fullText)throw Error('This collection has no full-text index. Try titles and names instead.');let u=new URL('/search',base);u.searchParams.set('books.id',item.id);u.searchParams.set('pattern',query);if(tab){tab.opener=null;tab.location=u.href;libraryPendingTab=null;status.textContent='Full-text results opened in a new tab.'}else status.textContent='Allow pop-ups to open full-text results.'}catch(err){if(tab)tab.close();if(libraryPendingTab===tab)libraryPendingTab=null;if(version===librarySearchVersion)status.textContent=err.message}};
+$('#library-prev').onclick=()=>{if(libraryPage){libraryPage={...libraryPage,start:Math.max(0,libraryPage.start-15)};showLibraryPage(libraryPage)}};
+$('#library-next').onclick=()=>{if(libraryPage){libraryPage={...libraryPage,start:libraryPage.start+15};showLibraryPage(libraryPage)}};
+$('#search').onsubmit=e=>{e.preventDefault();let f=new FormData(e.target);searchState={q:f.get('q'),lang:f.get('lang'),start:0,total:0};search()};
+document.querySelectorAll('[data-catalog-query]').forEach(button=>button.addEventListener('click',()=>{let form=$('#search');form.elements.q.value=button.dataset.catalogQuery;searchState={q:form.elements.q.value,lang:form.elements.lang.value,start:0,total:0};search()}));$('#prev').onclick=()=>{searchState.start=Math.max(0,searchState.start-20);search()};$('#next').onclick=()=>{searchState.start+=20;search()};
+$('#cancel-download').onclick=async()=>{try{await api('/api/download/cancel',{});$('#download-status').textContent='Pausing download…'}catch(e){$('#download-status').textContent=e.message}};
+$('#retry-download').onclick=async()=>{try{await api('/api/download/retry',{});await update()}catch(e){$('#download-status').textContent=e.message}};
+$('#discard-download').onclick=async()=>{try{await api('/api/download/discard',{});await update();$('#download-status').textContent='Incomplete download discarded.'}catch(e){$('#download-status').textContent=e.message}};
+$('#download').onsubmit=async e=>{e.preventDefault();let f=new FormData(e.target);try{await api('/api/download',{url:f.get('url'),name:f.get('name'),bytes:Number(f.get('bytes')),sha256:f.get('sha256')});await update()}catch(err){$('#download-status').textContent=err.message}};
+$('#start').onclick=async()=>{let status=$('#reader-status');let tab=window.open('about:blank','_blank');status.textContent='Starting the reader…';try{let r=await api('/api/start',{});for(let i=0;i<120;i++){try{await fetch(r.readerURL,{mode:'no-cors',cache:'no-store'});status.textContent=r.warning||'Reader is running.';if(tab){tab.opener=null;tab.location=r.url}else{status.textContent='Allow pop-ups to open the library.'}return}catch(e){await new Promise(resolve=>setTimeout(resolve,500))}}if(tab)tab.close();status.textContent='Reader did not become ready. Check the application log.'}catch(e){if(tab)tab.close();status.textContent=e.message}};
+$('#refresh-reader').onclick=async()=>{const button=$('#refresh-reader'),status=$('#reader-status');readerRefreshing=true;librarySearchVersion++;closePendingSearchTab();if(librarySearchController)librarySearchController.abort();libraryPage=null;$('#library-results').replaceChildren();$('#library-pages').hidden=true;$('#library-status').textContent='Refresh in progress. Search again when it completes.';$('#load-collections').disabled=true;$('#library-search button[type=submit]').disabled=true;button.disabled=true;$('#start').disabled=true;$('#stop').disabled=true;status.textContent='Refreshing collections…';try{const state=await api('/api/state');if(state.readerURL){await api('/api/stop',{});let stopped=false;for(let i=0;i<100;i++){if(!(await api('/api/state')).readerURL){stopped=true;break}await new Promise(resolve=>setTimeout(resolve,100))}if(!stopped)throw Error('Reader did not stop. Try again.')}loadedReader='';await ensureReader(true);$('#library-status').textContent='Collections refreshed. Search again for current results.';status.textContent=`Reader refreshed: ${localItems.length} collection${localItems.length===1?'':'s'} available.`}catch(e){status.textContent=e.message;$('#library-status').textContent='Refresh did not complete. Search again after the reader is available.'}finally{readerRefreshing=false;$('#load-collections').disabled=false;$('#library-search button[type=submit]').disabled=false;button.disabled=false;$('#start').disabled=libraryUnavailable;$('#stop').disabled=false}};
+if(window.desktopHost){$('#choose-library').hidden=false;$('#choose-library').onclick=async()=>{let result=await window.desktopHost.chooseLibrary($('#drive-list').value);if(result.error)$('#summary').textContent=result.error}};
+async function refreshDrives(){
+  try{const data=await api('/api/drives');stagingCandidates=data.stagingOptions||[];stagingCandidatesRoot=data.libraryRoot||'';for(const id of ['#drive-list','#stage-drive-list']){const select=$(id),previous=select.value;select.replaceChildren(new Option('Choose a drive',''));data.drives.forEach((drive,index)=>{const label=/^[0-9a-f-]{8,}$/i.test(drive.label)?'Drive '+(index+1):drive.label;select.add(new Option(label+' ('+formatBytes(drive.freeBytes)+' free)',drive.path))});const choice=id==='#drive-list'?selectedLibraryDrive:selectedFinalDrive;if(data.drives.some(d=>d.path===choice))select.value=choice;else if(data.drives.some(d=>d.path===previous))select.value=previous}updateCuratedEstimate()}
+  catch(err){$('#benchmark-status').textContent='Could not list drives: '+err.message+'. You can still browse for a folder.'}
+}
+$('#refresh-drives').onclick=refreshDrives;refreshDrives();
+let selectedDestinationMode='', selectedStrategy='staged', selectedStageSource='system', selectedStageDestination='', selectedLibraryDrive='', selectedFinalDrive='';
+function renderStageOptions(){$('#summary').hidden=!lastLibraryState?.libraryError&&!(lastLibraryState?.archiveCount>0)&&!selectedLibraryDrive;const external=selectedDestinationMode==='external', staged=external&&selectedStrategy==='staged';$('#external-options').hidden=!external;$('#stage-source-options').hidden=!staged;$('#stage-destination-area').hidden=!staged;$('#stage-copy-area').hidden=!staged;$('#stage-details').hidden=!staged;$('#benchmark-destination').hidden=!staged;$('#library-drive-area').hidden=!(external&&(!staged||selectedStageSource==='other'));$('#physical-confirm').hidden=!(staged&&stageCapacity?.physicalCheckAvailable===false);$('#library-folder-label').textContent=staged?'Staging library folder':'Selected library folder';$('#stage-destination').textContent=selectedStageDestination||'Not selected';$('#stage-copy-destination').textContent=selectedStageDestination||'Not selected';document.querySelectorAll('input[name=staging-strategy]').forEach(input=>{input.checked=input.value===selectedStrategy});document.querySelectorAll('input[name=stage-source]').forEach(input=>{input.checked=input.value===selectedStageSource});}
+function chooseDestinationMode(mode,remember=true){
+  if(!['local','external'].includes(mode))return;
+  selectedDestinationMode=mode;renderStageOptions();
+  document.querySelector('input[name="destination-mode"][value="'+mode+'"]').checked=true;
+  const suggested=mode==='local'||(mode==='external'&&selectedStrategy==='staged'&&selectedStageSource==='system')?32:2;
+  $('#reserve-gib').value=String(Math.max(savedReserveGiB,suggested));reserveDirty=true;
+  $('#reserve-status').textContent='You can change the free-space reserve here.';
+  updateCuratedEstimate();
+  if(remember&&window.desktopHost?.setDestinationMode)window.desktopHost.setDestinationMode(mode);
+}
+async function switchLibraryDrive(drive){
+  if(!window.desktopHost?.useLibraryDrive)return;
+  const button=$('#location-next');button.disabled=true;$('#location-status').textContent='Setting up your library…';
+  try{await stopSpeedTest();const result=await window.desktopHost.useLibraryDrive(drive);if(result.error)throw Error(result.error);selectedLibraryDrive=drive;updateCuratedEstimate();$('#location-status').textContent='Library location selected.'}
+  catch(err){selectedLibraryDrive='';$('#drive-list').value='';$('#location-status').textContent=err.message}finally{button.disabled=false}
+}
+document.querySelectorAll('input[name="destination-mode"]').forEach(input=>input.addEventListener('change',async()=>{chooseDestinationMode(input.value,false);if(window.desktopHost?.setDestinationMode)await window.desktopHost.setDestinationMode(input.value);if(input.value==='local'||(selectedStrategy==='staged'&&selectedStageSource==='system'))await switchLibraryDrive('home')}));
+$('#drive-list').addEventListener('change',async event=>{if(event.target.value)await switchLibraryDrive(event.target.value)});
+
+$('#location-next').onclick=async()=>{
+  if(!selectedDestinationMode){$('#location-status').textContent='Choose where you want your library.';return}
+  if(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&(!Number.isInteger(Number($('#stage-reserve').value))||Number($('#stage-reserve').value)<2||Number($('#stage-reserve').value)>1000000)){$('#stage-destination-status').textContent='Destination reserve must be between 2 and 1000000 GiB.';return}
+  if(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&!selectedStageDestination){$('#stage-destination-status').textContent='Choose a drive for your finished library.';return}
+  if((selectedDestinationMode==='local'||(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&selectedStageSource==='system'))&&!['home','custom'].includes(selectedLibraryDrive)){$('#location-status').textContent='Select this computer to continue.';return}
+  if(selectedDestinationMode==='external'&&(selectedStrategy==='direct'||selectedStageSource==='other')&&(!selectedLibraryDrive||selectedLibraryDrive==='home')){$('#location-status').textContent='Choose a drive for your library.';return}
+  if(libraryUnavailable||queueUnavailable){$('#location-status').textContent='Choose an available drive before continuing.';return}
+  const button=$('#location-next');button.disabled=true;
+  try{await stopSpeedTest();if(selectedDestinationMode==='external'&&selectedStrategy==='staged'){const info=await api('/api/stage-validate',{destination:selectedStageDestination});stageCapacity=info;renderStageOptions();if(info.physicalCheckAvailable===false&&!$('#confirm-different-drives').checked)throw Error('Confirm that staging and destination are on different physical drives.');if(info.sameFilesystem)throw Error('Staging and destination are on the same drive. Choose direct writing or a different drive.');$('#stage-destination-status').textContent='Destination available: '+formatBytes(info.freeBytes)+' free.'+(info.physicalCheckAvailable===false?' The app could not determine whether both locations share a physical disk; check before continuing.':'')}if(reserveDirty){await api('/api/reserve',{gib:Number($('#reserve-gib').value)});reserveDirty=false;$('#reserve-status').textContent='Reserve saved.';await update()}showSetupStep('collections')}
+  catch(err){$('#location-status').textContent=err.message}finally{button.disabled=false}
+};
+function suggestStorageReserve(){const suggested=selectedDestinationMode==='local'||(selectedDestinationMode==='external'&&selectedStrategy==='staged'&&selectedStageSource==='system')?32:2;$('#reserve-gib').value=String(Math.max(savedReserveGiB,suggested));reserveDirty=true;$('#reserve-status').textContent='You can change the free-space reserve here.';updateCuratedEstimate()}
+document.querySelectorAll('input[name="staging-strategy"]').forEach(input=>input.addEventListener('change',async()=>{selectedStrategy=input.value;renderStageOptions();suggestStorageReserve();if(window.desktopHost?.setStagingStrategy)await window.desktopHost.setStagingStrategy(selectedStrategy);if(selectedStrategy==='staged'&&selectedStageSource==='system')await switchLibraryDrive('home')}));
+document.querySelectorAll('input[name="stage-source"]').forEach(input=>input.addEventListener('change',async()=>{selectedStageSource=input.value;renderStageOptions();suggestStorageReserve();if(window.desktopHost?.setStagingSource)await window.desktopHost.setStagingSource(selectedStageSource);if(selectedStageSource==='system')await switchLibraryDrive('home')}));
+if(window.desktopHost?.chooseStageDestination){$('#choose-stage-destination').hidden=false;$('#choose-stage-destination').onclick=async()=>{const result=await window.desktopHost.chooseStageDestination($('#stage-drive-list').value);if(result.error)$('#stage-destination-status').textContent=result.error;else if(result.path){selectedStageDestination=result.path;stageCapacity=null;$('#confirm-different-drives').checked=false;renderStageOptions();try{stageCapacity=await api('/api/stage-validate',{destination:selectedStageDestination});renderStageOptions();$('#stage-destination-status').textContent=stageCapacity.sameFilesystem?'Staging and destination are on the same drive. Choose direct writing or a different drive.':'Destination available: '+formatBytes(stageCapacity.freeBytes)+' free.'+(stageCapacity.physicalCheckAvailable===false?' The app could not determine whether both locations share a physical disk; check before continuing.':'')}catch(err){$('#stage-destination-status').textContent=err.message}await update()}}}
+if(window.desktopHost?.getStagingOptions)window.desktopHost.getStagingOptions().then(async options=>{if(options.startupNotice)$('#location-status').textContent=options.startupNotice;if(options.strategy==='staged'||options.strategy==='direct')selectedStrategy=options.strategy;selectedStageDestination=options.destination||'';selectedLibraryDrive=options.libraryDrive||'';selectedFinalDrive=options.destinationDrive||'';if(selectedLibraryDrive)$('#drive-list').value=selectedLibraryDrive;if(selectedFinalDrive)$('#stage-drive-list').value=selectedFinalDrive;if(Number.isInteger(options.reserveGiB))$('#stage-reserve').value=String(options.reserveGiB);if(options.source==='system'||options.source==='other')selectedStageSource=options.source;await update();if(options.mode)chooseDestinationMode(options.mode,false);if(options.collectionSelection){collectionMode=options.collectionSelection.mode;$('#collection-preset').value=collectionMode;for(const item of curatedCollections)document.querySelector('#curated-collections input[value="'+item[1]+'"]').checked=options.collectionSelection.ids.includes(item[1])}collectionPreferencesReady=true;renderStageOptions();updateCuratedEstimate()}).catch(()=>{collectionPreferencesReady=true;updateCuratedEstimate()});
+$('#stage-reserve').addEventListener('input',()=>{const value=Number($('#stage-reserve').value);if(Number.isInteger(value)&&window.desktopHost?.setStagingReserve)window.desktopHost.setStagingReserve(value);updateCuratedEstimate()});
+$('#stage-drive-list').addEventListener('change',async event=>{
+ if(!event.target.value||!window.desktopHost?.useStageDrive)return;
+ const drive=event.target.value;$('#location-next').disabled=true;$('#stage-destination-status').textContent='Checking drive…';
+ try{await stopSpeedTest();const result=await window.desktopHost.useStageDrive(drive);if(result.error)throw Error(result.error);selectedFinalDrive=drive;selectedStageDestination=result.path;stageCapacity=null;$('#confirm-different-drives').checked=false;stageCapacity=await api('/api/stage-validate',{destination:selectedStageDestination});renderStageOptions();$('#stage-destination-status').textContent=stageCapacity.sameFilesystem?'Choose a different drive.':'Drive ready. '+formatBytes(stageCapacity.freeBytes)+' free.'+(stageCapacity.physicalCheckAvailable===false?' Please confirm that the drives are different.':'');}
+ catch(err){selectedFinalDrive='';selectedStageDestination='';stageCapacity=null;$('#stage-drive-list').value='';$('#stage-destination-status').textContent=err.message;renderStageOptions()}finally{updateCuratedEstimate();$('#location-next').disabled=false}
+});
+$('#stage-copy').onclick=async()=>{try{if(!selectedStageDestination)throw Error('Choose a final destination in the Location step.');const reserveGiB=Number($('#stage-reserve').value);if(!Number.isInteger(reserveGiB)||reserveGiB<2||reserveGiB>1000000)throw Error('Destination reserve must be between 2 and 1000000 GiB.');await api('/api/stage-copy',{destination:selectedStageDestination,reserveGiB,confirmedDifferent:$('#confirm-different-drives').checked});$('#stage-copy-status').textContent='Copy started. Staged files will remain in place.';await update()}catch(e){$('#stage-copy-status').textContent=e.message}};
+async function runSpeedTest(path,status,button,reserveInput){
+  if(!path){status.textContent='Choose a folder first.';return}
+  const reserveGiB=Number(reserveInput.value);if(!Number.isInteger(reserveGiB)||reserveGiB<2||reserveGiB>1000000){status.textContent='Set a valid reserve before testing.';return}const mode=$('#benchmark-mode').value;activeBenchmarkStatus=status;benchmarkController=new AbortController();button.disabled=true;$('#cancel-benchmark').hidden=false;status.textContent=mode==='extended'?'Running extended sequential and mixed tests. This can take several minutes…':'Testing sequential writes and mixed access using temporary files…';
+  try{const result=await api('/api/benchmark',{path,mode,reserveGiB},benchmarkController.signal);const rate=result.bytesPerSecond/1e6;const mixed=result.mixedBytesPerSecond/1e6;const rating=rate<30||mixed<10?'Slow in this short test; staging on a fast drive may help.':'This short test suggests reasonable throughput.';status.textContent=`Sequential write: about ${rate.toFixed(1)} MB/s (first half ${(result.firstHalfBytesPerSecond/1e6).toFixed(1)}, second half ${(result.secondHalfBytesPerSecond/1e6).toFixed(1)}); mixed access: about ${mixed.toFixed(1)} MB/s. ${rating} Caching affects results; this cannot identify SMR or predict sustained speed.`}
+  catch(err){status.textContent=err.message}finally{button.disabled=false;activeBenchmarkStatus=null;benchmarkController=null;$('#cancel-benchmark').hidden=true;await update()}
+}
+async function stopSpeedTest(){
+  const pending=benchmarkPromise;if(!pending)return;
+  if(activeBenchmarkStatus)activeBenchmarkStatus.textContent='Stopping speed test and removing temporary files…';
+  try{await api('/api/download/cancel',{})}catch{if(benchmarkController)benchmarkController.abort()} // It may not have started, or may have just completed.
+  await pending;
+  for(;;){const state=await api('/api/state');if(!state.job?.name?.startsWith('Testing '))break;await new Promise(resolve=>setTimeout(resolve,250))}
+}
+function beginSpeedTest(path,status,button,reserve){
+  if(benchmarkPromise)return;
+  const pending=runSpeedTest(path,status,button,reserve);benchmarkPromise=pending;
+  pending.finally(()=>{if(benchmarkPromise===pending)benchmarkPromise=null});
+}
+$('#cancel-benchmark').onclick=stopSpeedTest;
+$('#benchmark-library').onclick=()=>beginSpeedTest($('#root').textContent,$('#benchmark-status'),$('#benchmark-library'),$('#reserve-gib'));
+$('#benchmark-destination').onclick=()=>beginSpeedTest(selectedStageDestination,$('#benchmark-status'),$('#benchmark-destination'),$('#stage-reserve'));
+
+function hasReadableLibrary(state){return !!state&&!state.libraryError&&state.archiveCount>0}
+function navigationForLibrary(state,previous,step){
+ const ready=hasReadableLibrary(state),changed=!previous||previous.root!==state.root;
+ const busy=!!state.queueActive||['resolving','checking','downloading','verifying','repairing','indexing','waiting','retrying'].includes(state.job?.state);
+ const pending=ready&&(changed||!previous.ready||previous.pending);
+ const attention=['failed','canceled'].includes(state.job?.state);
+ const landing=!ready&&['read','manage'].includes(step)?'location':pending&&(!busy||changed)&&!attention?'read':step;
+ return {root:state.root,ready,pending:pending&&busy&&landing!=='read',landing};
+}
+function renderLibraryNavigation(state){
+ const ready=hasReadableLibrary(state),reading=activeSetupStep==='read';
+ $('#library-home').hidden=!ready||reading;
+ $('#manage-library').hidden=!ready||!reading;
+ $('#management-steps').hidden=reading;
+ document.querySelector('[data-step=read]').hidden=true;
+ $('#reader-management').hidden=!ready;
+ $('#download-read').hidden=!ready;
+ $('#app-description').textContent=ready?'Search, browse and read your downloaded collections.':'Add your first collections to build an offline library.';
+ if(!ready){$('#reading-recent').hidden=true;$('#reading-browse').replaceChildren()}
+}
+function applyLibraryNavigation(state){
+ const next=navigationForLibrary(state,readingNavigation,activeSetupStep);readingNavigation=next;
+ if(next.landing!==activeSetupStep)showSetupStep(next.landing);
+ renderLibraryNavigation(state);
+}
+const setupSteps=['location','collections','download','read','manage'];
+function showSetupStep(name){
+  if(!setupSteps.includes(name))return;
+ if(name==='read'&&!hasReadableLibrary(lastLibraryState))name='location';
+ if(name==='read'&&lastLibraryState?.archiveCount>0&&!localItems.length&&!readerRefreshing)ensureReader().catch(error=>{$('#library-status').textContent=error.message});
+  activeSetupStep=name;updateCuratedEstimate();
+  document.querySelectorAll('[data-panel]').forEach(panel=>{panel.hidden=panel.dataset.panel!==name});
+  document.querySelectorAll('[data-step]').forEach(button=>{if(button.dataset.step===name)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current')});
+  renderLibraryNavigation(lastLibraryState);window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',async()=>{if(readingNavigation)readingNavigation.pending=false;if(button.dataset.step!=='location')await stopSpeedTest();showSetupStep(button.dataset.step)}));
+document.querySelectorAll('[data-go]').forEach(button=>button.addEventListener('click',async()=>{if(readingNavigation)readingNavigation.pending=false;if(button.dataset.go!=='location')await stopSpeedTest();showSetupStep(button.dataset.go)}));
+$('#collections-next').onclick=async()=>{const button=$('#collections-next');button.disabled=true;try{if(await addSelected())showSetupStep('download')}finally{button.disabled=false}};
+$('#collection-preset').dispatchEvent(new Event('change'));renderStarterPacks();
+showSetupStep('location');
+$('#quit').onclick=async()=>{try{await api('/api/quit',{});$('#reader-status').textContent='App closed. You can close this tab.'}catch(e){$('#reader-status').textContent=e.message}};$('#stop').onclick=async()=>{try{await api('/api/stop',{});$('#reader-status').textContent='Reader stopped.'}catch(e){$('#reader-status').textContent=e.message}};update();setInterval(update,1500);
+</script></body></html>

@@ -1,0 +1,4 @@
+#!/bin/sh
+if [ "$1" = --version ]; then echo 'Optional qmake unavailable'; exit 0; fi
+printf '%s\n' 'Unexpected qmake invocation' >&2
+exit 1

@@ -1,0 +1,102 @@
+name: Desktop checks
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  desktop:
+    name: ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            target: linux-amd64
+          - runner: windows-latest
+            target: windows-amd64
+          - runner: macos-15
+            target: darwin-arm64
+          - runner: macos-15-intel
+            target: darwin-amd64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache-dependency-path: desktop/go.sum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: desktop/shell/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test desktop core
+        working-directory: desktop
+        run: go test ./...
+      - name: Test package assembly
+        run: |
+          python -m unittest discover -s tests -p test_package_desktop.py
+          python -m unittest discover -s tests -p test_ci_fixtures.py
+          python -m unittest discover -s tests -p test_build_desktop_preview.py
+          python -m unittest discover -s tests -p test_sign_windows_preview.py
+      - name: Install build-time shell tools
+        working-directory: desktop/shell
+        run: |
+          npm ci --no-audit --no-fund
+          node node_modules/electron/install.js
+          npm test
+      - name: Fetch checked reader and test fixture
+        run: python scripts/ci-fetch-fixtures.py --target ${{ matrix.target }} --output "${{ runner.temp }}/offline-inputs"
+      - name: Assemble and smoke-test a portable folder
+        shell: bash
+        env:
+          TARGET: ${{ matrix.target }}
+          RUNNER_TEMP_DIR: ${{ runner.temp }}
+        run: |
+          set -euo pipefail
+          python scripts/build-desktop-preview.py --target "$TARGET" \
+            --output "$RUNNER_TEMP_DIR/offline-app"
+          python -c "import json,os,pathlib; info=json.loads((pathlib.Path(os.environ['RUNNER_TEMP_DIR'])/'offline-app'/'build-info.json').read_text()); source=info['reader_source']; assert info['target']==os.environ['TARGET'] and source['status']=='supplied and file hashes checked' and info['reader_version_report']['status']=='reported by bundled executable' and 'kiwix-tools' in info['reader_version_report']['text'] and all(info['binary_sha256'][name]==digest for name,digest in source['reported']['reader_files_sha256'].items()); print(json.dumps({'target':info['target'],'reader_version_report':info['reader_version_report']}))"
+          python scripts/desktop-build-fingerprints.py --all-files "$RUNNER_TEMP_DIR/offline-app"
+          case "$TARGET" in
+            linux-*) app="$RUNNER_TEMP_DIR/offline-app/offline-library" ;;
+            windows-*) app="$RUNNER_TEMP_DIR/offline-app/Offline Library.exe" ;;
+            darwin-*) app="$RUNNER_TEMP_DIR/offline-app/Offline Library.app/Contents/MacOS/Electron" ;;
+          esac
+          export OFFLINE_LIBRARY_SMOKE_APP="$app"
+          export OFFLINE_LIBRARY_SMOKE_ZIM="$RUNNER_TEMP_DIR/offline-inputs/fixture.zim"
+          export OFFLINE_LIBRARY_SMOKE_COLLISION_ZIM="$RUNNER_TEMP_DIR/offline-inputs/collision-fixture.zim"
+          cd desktop/shell
+          if [[ "$TARGET" == linux-* ]]; then
+            xvfb-run -a node test/smoke.cjs
+          else
+            node test/smoke.cjs
+          fi
+          if [[ "$TARGET" == darwin-* ]]; then
+            (cd ../signing && npm ci --ignore-scripts --no-audit --no-fund)
+            if node ../signing/sign-copy.mjs "$RUNNER_TEMP_DIR/offline-app" "$RUNNER_TEMP_DIR/offline-app" --adhoc; then
+              echo 'Signing must not overwrite its input' >&2; exit 1
+            fi
+            node ../signing/sign-copy.mjs "$RUNNER_TEMP_DIR/offline-app" "$RUNNER_TEMP_DIR/offline-app-adhoc" --adhoc
+            python -c "import json,os,pathlib; p=pathlib.Path(os.environ['RUNNER_TEMP_DIR']); original=json.loads((p/'offline-app'/'build-info.json').read_text()); signed=json.loads((p/'offline-app-adhoc'/'build-info.json').read_text()); assert signed['pre_signing_binary_sha256']==original['binary_sha256'] and signed['signing']['kind']=='ad-hoc' and signed['signing']['notarized'] is False"
+            export OFFLINE_LIBRARY_SMOKE_APP="$RUNNER_TEMP_DIR/offline-app-adhoc/Offline Library.app/Contents/MacOS/Electron"
+            node test/smoke.cjs
+          fi
+      - name: Sign and smoke-test Windows copy
+        if: startsWith(matrix.target, 'windows-')
+        timeout-minutes: 4
+        working-directory: desktop/shell
+        shell: pwsh
+        env:
+          OFFLINE_LIBRARY_SMOKE_ZIM: ${{ runner.temp }}/offline-inputs/fixture.zim
+          OFFLINE_LIBRARY_SMOKE_COLLISION_ZIM: ${{ runner.temp }}/offline-inputs/collision-fixture.zim
+        run: |
+          ../signing/test-windows-signing.ps1 "${{ runner.temp }}/offline-app" "${{ runner.temp }}/offline-app-test-signed"

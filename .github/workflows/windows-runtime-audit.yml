@@ -1,0 +1,40 @@
+name: Windows runtime signature audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check the documented Microsoft installer
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $url = 'https://download.visualstudio.microsoft.com/download/pr/ebdab8e5-1d7b-4d9f-a11b-cbb1720c3b12/843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C/VC_redist.x64.exe'
+          $expected = '843068991DAAA1F73AD9F6239BCE4D0F6A07A51F18C37EA2A867E9BECA71295C'
+          $installer = Join-Path $env:RUNNER_TEMP 'olk-audit-vc-redist.exe'
+          try {
+            Invoke-WebRequest -Uri $url -OutFile $installer -TimeoutSec 120
+            $digest = (Get-FileHash -Algorithm SHA256 $installer).Hash
+            if ($digest -ne $expected) { throw 'Installer hash does not match the documented file' }
+            $signature = Get-AuthenticodeSignature -LiteralPath $installer
+            Write-Host "Authenticode status: $($signature.Status)"
+            Write-Host "Signer: $($signature.SignerCertificate.Subject)"
+            if ($signature.Status -ne 'Valid') { throw "Authenticode validation failed: $($signature.StatusMessage)" }
+            if (-not $signature.TimeStamperCertificate) { throw 'No timestamp certificate found' }
+            Write-Host "Timestamp signer: $($signature.TimeStamperCertificate.Subject)"
+            $kit = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits\10\bin'
+            $tool = Get-ChildItem -Path $kit -Filter signtool.exe -Recurse -File |
+              Where-Object { $_.FullName -match '\\x64\\signtool\.exe$' } |
+              Sort-Object FullName -Descending | Select-Object -First 1
+            if (-not $tool) { throw 'Windows SDK signtool.exe not found' }
+            & $tool.FullName verify /pa /tw /v $installer
+            if ($LASTEXITCODE -ne 0) { throw "SignTool validation failed or warned: $LASTEXITCODE" }
+          } finally {
+            Remove-Item -LiteralPath $installer -Force -ErrorAction SilentlyContinue
+          }
