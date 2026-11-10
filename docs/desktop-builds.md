@@ -38,27 +38,6 @@ offline build also needs the Go modules already cached; set `GOPROXY=off` to
 ensure the Go command does not fetch them. The packager checks executable
 architectures and records local hashes. A supplied reader without provenance is
 marked as such; supplying one does not complete source or license review.
-This supplied-input path was exercised on Linux x86-64 with networking isolated,
-cached Go modules, Electron 45.2.3 and the experimental source-built reader;
-the assembled app passed the offline GUI smoke test. Other hosts and target
-platforms still need native validation.
-
-For a locally built Linux reader, a developer can record the claimed build
-inputs before assembly:
-
-```sh
-python3 scripts/reader-rebuild/record-provenance.py --reader-dir /path/to/reader \
-  --input-lock scripts/reader-rebuild/input-lock.json \
-  --build-adapter scripts/reader-rebuild/offline-builder.py \
-  --warning-policy scripts/reader-rebuild/link_warning_policy.py \
-  --kiwix-build-commit 8062f23fb42454c9e6db319abe71d2add7263de7
-```
-
-This writes a new `reader-provenance.json` without replacing an existing one.
-Assembly checks that its recorded reader hash matches the supplied bytes and
-copies the recognized recipe hashes into `build-info.json`. It does not verify
-that the claimed recipe produced that reader or that its source and licenses
-are complete.
 
 To supply the runtimes yourself for a Linux x86-64 development build, run:
 

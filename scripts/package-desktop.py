@@ -76,17 +76,6 @@ def reader_provenance(reader, target, reader_exe, system):
             raise ValueError('Reader provenance does not cover supplied reader files')
         if any(not isinstance(expected[name], str) or sha256(file) != expected[name] for name, file in selected.items()):
             raise ValueError('Reader bytes do not match supplied provenance')
-        if data.get('kind') == 'source-build':
-            fields = ('input_lock_sha256', 'build_adapter_sha256', 'warning_policy_sha256')
-            if any(not isinstance(data.get(key), str) or not re.fullmatch(r'[0-9a-f]{64}', data[key]) for key in fields):
-                raise ValueError('Invalid source-build recipe hashes')
-            commit = data.get('kiwix_build_commit')
-            if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}', commit):
-                raise ValueError('Invalid source-build revision')
-            result = {key: data[key] for key in ('schema', 'kind', 'target', 'reader_files_sha256',
-                                                   'kiwix_build_commit', *fields)}
-            return {'status': 'supplied and file hashes checked', 'reported': result,
-                    'note': 'Source-build details are supplied by the input and not independently verified; this is not license or corresponding-source clearance.'}
         if data.get('kind') is not None:
             raise ValueError('Invalid reader provenance kind')
         # Copy only recognized fields, never arbitrary paths from input metadata.
