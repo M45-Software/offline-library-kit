@@ -1,10 +1,10 @@
 module offline-library-kit/desktop
 
-go 1.22
+go 1.27.3
 
 require (
-	github.com/klauspost/compress v1.17.11
-	github.com/ulikunitz/xz v0.5.12
-	golang.org/x/net v0.33.0
-	golang.org/x/sys v0.28.0
+	github.com/klauspost/compress v1.20.4
+	github.com/ulikunitz/xz v0.5.17
+	golang.org/x/net v0.62.0
+	golang.org/x/sys v0.50.0
 )

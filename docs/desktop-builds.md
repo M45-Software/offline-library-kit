@@ -6,7 +6,7 @@ folder alongside Electron and a platform-matched Kiwix reader. This is a
 library archives or require them to be redistributed.
 
 To build a local preview on Linux x86-64, Windows x86-64, or an Intel or Apple
-Silicon Mac, install Python 3.11+, Go, Node.js and npm **on the build machine**,
+Silicon Mac, install Python 3.11+, Go 1.27.3+, Node.js and npm **on the build machine**,
 then run from the repository root with an internet connection:
 
 ```sh
@@ -161,6 +161,14 @@ that path has not yet been validated with a certificate. It does not submit to
 Apple, create an installer or image, or publish binaries. A future notarization
 and distribution workflow still needs credential handling, validation and the
 third-party source and license review.
+
+`.github/workflows/security.yml` runs on pull requests, pushes to `main`, and
+weekly. It tests the Go core with the race detector, runs vet and govulncheck,
+cross-builds the core for all four desktop targets, tests the Python packaging
+tools and shell unit tests, and audits the pinned npm and Python dependencies.
+These checks do not download readers or library content. The native libraries
+inside externally supplied Kiwix readers need a separate audit; package-manager
+scans do not establish their security status.
 
 When enabled, `.github/workflows/desktop.yml` runs only when a release is
 published, not on commits or pull requests. It runs the core tests, assembles a
