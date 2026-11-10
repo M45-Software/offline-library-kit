@@ -168,7 +168,9 @@ cross-builds the core for all four desktop targets, tests the Python packaging
 tools and shell unit tests, and audits the pinned npm and Python dependencies.
 These checks do not download readers or library content. The native libraries
 inside externally supplied Kiwix readers need a separate audit; package-manager
-scans do not establish their security status.
+scans do not establish their security status. The
+[native reader audit](reader-security-audit.md) records the current findings
+and the rebuild work still required.
 
 When enabled, `.github/workflows/desktop.yml` runs only when a release is
 published, not on commits or pull requests. It runs the core tests, assembles a

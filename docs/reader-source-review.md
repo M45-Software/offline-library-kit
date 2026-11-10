@@ -4,6 +4,9 @@ This is an evidence record for preparing a future desktop distribution, not a
 license clearance or a claim that all corresponding source has been identified.
 The reader archives have only been used in local development builds and CI.
 
+See the [native reader security audit](reader-security-audit.md) for the
+2026-11-10 artifact inventory, advisory triage and outstanding rebuild work.
+
 The one-command preview builder currently selects these Kiwix tools archives:
 
 | Build target | Reader archive | Candidate upstream tag and commit |
