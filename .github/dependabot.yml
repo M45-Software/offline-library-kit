@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: gomod
+    directory: /desktop
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directories:
+      - /desktop/shell
+      - /desktop/signing
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
