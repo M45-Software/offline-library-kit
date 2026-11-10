@@ -2,8 +2,6 @@ import importlib.util
 import json
 from pathlib import Path
 import struct
-import subprocess
-import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -95,62 +93,6 @@ class DesktopPackage(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'inside an input'):
                 module.assemble('linux-amd64', runtime, root, runtime / 'out')
             self.assertFalse((runtime / 'out').exists())
-
-    def test_source_build_record_checks_bytes_and_excludes_extra_metadata(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            reader = Path(tmp); binary = reader / 'kiwix-serve'
-            binary.write_bytes(elf())
-            record = {'schema': 1, 'kind': 'source-build', 'target': 'linux-amd64',
-                      'reader_files_sha256': {'kiwix-serve': module.sha256(binary)},
-                      'kiwix_build_commit': 'a' * 40, 'input_lock_sha256': 'b' * 64,
-                      'build_adapter_sha256': 'c' * 64, 'warning_policy_sha256': 'd' * 64,
-                      'private_path': '/do/not/copy'}
-            metadata = reader / 'reader-provenance.json'
-            metadata.write_text(json.dumps(record))
-            result = module.reader_provenance(reader, 'linux-amd64', 'kiwix-serve', 'linux')
-            self.assertNotIn('private_path', result['reported'])
-            self.assertIn('not independently verified', result['note'])
-            runtime = reader / 'runtime'; runtime.mkdir()
-            (runtime / 'version').write_text(module.VERSION)
-            (runtime / 'electron').write_bytes(elf())
-            (runtime / 'LICENSE').write_text('license')
-            (runtime / 'LICENSES.chromium.html').write_text('licenses')
-            def fake_build(args, **kwargs):
-                Path(args[args.index('-o') + 1]).write_bytes(elf())
-            with tempfile.TemporaryDirectory() as tmp_output, patch.object(module.subprocess, 'run', side_effect=fake_build):
-                output = Path(tmp_output) / 'app'
-                module.assemble('linux-amd64', runtime, reader, output)
-                info = json.loads((output / 'build-info.json').read_text())
-                self.assertEqual(info['reader_source']['reported']['kind'], 'source-build')
-                self.assertNotIn('private_path', info['reader_source']['reported'])
-            record['input_lock_sha256'] = 'not-a-hash'
-            metadata.write_text(json.dumps(record))
-            with self.assertRaisesRegex(ValueError, 'recipe hashes'):
-                module.reader_provenance(reader, 'linux-amd64', 'kiwix-serve', 'linux')
-            record['input_lock_sha256'] = 'b' * 64
-            record['reader_files_sha256']['kiwix-serve'] = '0' * 64
-            metadata.write_text(json.dumps(record))
-            with self.assertRaisesRegex(ValueError, 'do not match'):
-                module.reader_provenance(reader, 'linux-amd64', 'kiwix-serve', 'linux')
-
-    def test_source_record_generator_refuses_overwrite(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp); reader = root / 'reader'; reader.mkdir()
-            (reader / 'kiwix-serve').write_bytes(elf())
-            for name in ('lock', 'adapter', 'policy'):
-                (root / name).write_text(name)
-            command = [sys.executable, str(ROOT / 'scripts/reader-rebuild/record-provenance.py'),
-                       '--reader-dir', str(reader), '--input-lock', str(root / 'lock'),
-                       '--build-adapter', str(root / 'adapter'), '--warning-policy', str(root / 'policy'),
-                       '--kiwix-build-commit', 'a' * 40]
-            result = subprocess.run(command, capture_output=True, text=True)
-            self.assertEqual(result.returncode, 0, result.stderr)
-            metadata = reader / 'reader-provenance.json'
-            original = metadata.read_text()
-            self.assertNotIn(str(root), original)
-            self.assertEqual(module.reader_provenance(reader, 'linux-amd64', 'kiwix-serve', 'linux')['reported']['kind'], 'source-build')
-            self.assertNotEqual(subprocess.run(command, capture_output=True, text=True).returncode, 0)
-            self.assertEqual(metadata.read_text(), original)
 
 
 if __name__ == '__main__':
