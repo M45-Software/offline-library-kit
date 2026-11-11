@@ -6,7 +6,7 @@ folder alongside Electron and a platform-matched Kiwix reader. This is a
 library archives or require them to be redistributed.
 
 To build a local preview on Linux x86-64, Windows x86-64, or an Intel or Apple
-Silicon Mac, install Python 3.11+, Go 1.27.3+, Node.js and npm **on the build machine**,
+Silicon Mac, install Python 3.11+, Go 1.27.4+, Node.js and npm **on the build machine**,
 then run from the repository root with an internet connection:
 
 ```sh
